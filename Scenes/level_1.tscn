@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckkvp1fnfvbxi"]
+[gd_scene load_steps=8 format=3 uid="uid://ckkvp1fnfvbxi"]
 
 [ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/player.tscn" id="1_f61ji"]
-[ext_resource type="Script" path="res://Scripts/area_3d.gd" id="2_sx2xx"]
 [ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/card.tscn" id="3_vxb8t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k54gi"]
@@ -22,8 +21,6 @@ albedo_color = Color(1.39579e-06, 0.631892, 0.447178, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ekld"]
 albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6fqwk"]
 
 [node name="Level1" type="Node3D"]
 
@@ -73,13 +70,14 @@ material = SubResource("StandardMaterial3D_6ekld")
 
 [node name="Player" parent="." instance=ExtResource("1_f61ji")]
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72561, 0.549774, 4.29021)
-script = ExtResource("2_sx2xx")
+[node name="Card" parent="." instance=ExtResource("3_vxb8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 4)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_6fqwk")
+[node name="Card2" parent="." instance=ExtResource("3_vxb8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.58191, 1.38991, 0)
 
-[node name="Card" parent="Area3D/CollisionShape3D" instance=ExtResource("3_vxb8t")]
+[node name="Card3" parent="." instance=ExtResource("3_vxb8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41412, 6.54311)
 
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[node name="Card4" parent="." instance=ExtResource("3_vxb8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91852, 0.738129, 0)
