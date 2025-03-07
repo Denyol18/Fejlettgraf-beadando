@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6xr6kww5ndcm"]
+
+[ext_resource type="Script" path="res://Scripts/card.gd" id="1_ovwqa"]
+[ext_resource type="Material" uid="uid://b2j81ne3w11up" path="res://Materials/card.tres" id="2_s1xtx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1hxka"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mcnqd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_io23l"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="Card" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_1hxka")
+continuous_cd = true
+script = ExtResource("1_ovwqa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = SubResource("BoxMesh_mcnqd")
+surface_material_override/0 = ExtResource("2_s1xtx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.8, 0, 0, 0, 0.02, 0, -0.1, 0)
+shape = SubResource("ConvexPolygonShape3D_io23l")

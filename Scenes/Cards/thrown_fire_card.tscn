@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyoaqsbmcbq3p"]
+
+[ext_resource type="Script" path="res://Scripts/thrown_fire_card.gd" id="1_54ywh"]
+[ext_resource type="Material" uid="uid://cnemvqurd8kmb" path="res://Materials/fire_card.tres" id="2_dbixc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qx8ll"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1q7c"]
+
+[node name="ThrownFireCard" type="Node3D"]
+script = ExtResource("1_54ywh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+mesh = SubResource("BoxMesh_qx8ll")
+surface_material_override/0 = ExtResource("2_dbixc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+shape = SubResource("BoxShape3D_k1q7c")
+target_position = Vector3(0, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

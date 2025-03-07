@@ -6,11 +6,11 @@ signal on_item_pickedup(item)
 
 
 func on_item_entered_area(body: Node3D):
-	if (body is InteractableItem):
+	if (body is Card):
 		body.queue_free()
-		var itemPrefab = body.scene_file_path
+		var item_prefab = body.scene_file_path
 		for i in item_types.size():
-			if (item_types[i].item_model_prefab != null and item_types[i].item_model_prefab.resource_path == itemPrefab):
+			if (item_types[i].item_model_prefab != null and item_types[i].item_model_prefab.resource_path == item_prefab):
 				print("Item id:" + str(i) + " Item Name:" + item_types[i].item_name)
 				on_item_pickedup.emit(item_types[i])
 				return

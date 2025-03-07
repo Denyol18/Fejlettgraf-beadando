@@ -4,19 +4,24 @@ class_name PlayerUI
 
 @export var player_health_label : Label
 @export var stopwatch_label : Label
+@export var enemy_count_label : Label
 
 var player_health
 var time = 0.0
 var stopped = false
-
+var enemies
 
 func _ready() -> void:
 	player_health = $"..".MAX_HEALTH
-	player_health_label.text = "Health: %s" % player_health
 	
 
 func _process(delta: float) -> void:
 	update_stopwatch_label()
+	player_health_label.text = "Health: %s" % player_health
+	enemy_count_label.text = "Enemies left: %s" % count_enemies()
+	
+	if count_enemies() == 0:
+		stopped = true
 	
 	if stopped:
 		return
@@ -26,6 +31,11 @@ func _process(delta: float) -> void:
 func reset():
 	time = 0.0
 
+
+func count_enemies():
+	enemies = $".".get_tree().get_nodes_in_group("Enemy")
+	return enemies.size()
+	
 
 func update_stopwatch_label():
 	var msec = fmod(time, 1) * 1000

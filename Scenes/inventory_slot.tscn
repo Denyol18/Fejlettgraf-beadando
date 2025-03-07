@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/inventory_slot.gd" id="1_lcu1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyfr4"]
-bg_color = Color(0.392157, 0.392157, 0.392157, 0.686275)
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikke7"]
 bg_color = Color(0.136826, 0.136826, 0.136826, 0.686275)
