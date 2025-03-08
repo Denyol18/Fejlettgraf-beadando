@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bueucldgu2a2o"]
 
 [ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="1_f3nww"]
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_m6wnb"]
+[ext_resource type="Script" path="res://Scripts/Characters/enemy.gd" id="1_m6wnb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xith1"]
 

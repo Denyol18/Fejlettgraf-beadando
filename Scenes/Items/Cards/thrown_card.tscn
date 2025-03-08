@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://df4fbxivaxyu7"]
 
-[ext_resource type="Script" path="res://Scripts/thrown_card.gd" id="1_v6tcd"]
+[ext_resource type="Script" path="res://Scripts/Items/Cards/thrown_card.gd" id="1_v6tcd"]
 [ext_resource type="Material" uid="uid://b2j81ne3w11up" path="res://Materials/card.tres" id="2_cpwfs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qx8ll"]

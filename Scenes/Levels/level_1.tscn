@@ -1,11 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckkvp1fnfvbxi"]
+[gd_scene load_steps=23 format=3 uid="uid://ckkvp1fnfvbxi"]
 
-[ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/player.tscn" id="1_f61ji"]
-[ext_resource type="PackedScene" uid="uid://bueucldgu2a2o" path="res://Scenes/enemy.tscn" id="2_perug"]
+[ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/Characters/player.tscn" id="1_f61ji"]
+[ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_v2bp4"]
+[ext_resource type="PackedScene" uid="uid://bueucldgu2a2o" path="res://Scenes/Characters/enemy.tscn" id="2_perug"]
 [ext_resource type="Material" uid="uid://coe5vnirubssw" path="res://Materials/level_1.tres" id="3_6qoqe"]
-[ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Cards/card.tscn" id="3_vxb8t"]
+[ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="3_vxb8t"]
 [ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="4_e6qsj"]
-[ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Cards/fire_card.tscn" id="6_011um"]
+[ext_resource type="PackedScene" uid="uid://imgfsc22wb6y" path="res://Scenes/Items/Consumables/the_fist.tscn" id="5_mq0hv"]
+[ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Items/Cards/fire_card.tscn" id="6_011um"]
+[ext_resource type="PackedScene" uid="uid://cit341d8bpxnd" path="res://Scenes/Items/Consumables/the_snail.tscn" id="6_sv3xe"]
+[ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="9_4eja2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k54gi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,6 +47,7 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_v2bp4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -94,6 +99,30 @@ physics_material_override = SubResource("PhysicsMaterial_1hxka")
 
 [node name="Fire Card" parent="." instance=ExtResource("6_011um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1, -9)
+
+[node name="Fire Card2" parent="." instance=ExtResource("6_011um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37199, 2.64034, -8.47434)
+
+[node name="TheFist" parent="." instance=ExtResource("5_mq0hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10827, 1.42694, -9.04774)
+
+[node name="TheFist3" parent="." instance=ExtResource("5_mq0hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.1178)
+
+[node name="TheFist2" parent="." instance=ExtResource("5_mq0hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0682, 0.782307, 9.67051)
+
+[node name="TheSnail" parent="." instance=ExtResource("6_sv3xe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -13.0856)
+
+[node name="TheSnail2" parent="." instance=ExtResource("6_sv3xe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
+
+[node name="IceCard" parent="." instance=ExtResource("9_4eja2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.47146, 1.22304, -2.17053)
+
+[node name="IceCard2" parent="." instance=ExtResource("9_4eja2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1017, 0.792987, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

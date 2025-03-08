@@ -1,14 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://c87xpcvmjksrj"]
+[gd_scene load_steps=26 format=3 uid="uid://c87xpcvmjksrj"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ebmuu"]
-[ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Cards/card.tscn" id="2_v0n5p"]
-[ext_resource type="Script" path="res://Scripts/playerui.gd" id="2_yjhvj"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/player.gd" id="1_ebmuu"]
+[ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="2_v0n5p"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/playerui.gd" id="2_yjhvj"]
 [ext_resource type="Script" path="res://Scripts/inventory_handler.gd" id="3_be81r"]
-[ext_resource type="Script" path="res://Scripts/player_interaction.gd" id="3_mhxvx"]
-[ext_resource type="Script" path="res://Scripts/item_data.gd" id="4_agihy"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/player_interaction.gd" id="3_mhxvx"]
+[ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="4_agihy"]
 [ext_resource type="Texture2D" uid="uid://dsj1xrs1ex3q4" path="res://Icons/icon.svg" id="5_ugvrm"]
 [ext_resource type="Texture2D" uid="uid://byqxpqo2l4db" path="res://Icons/fire.jpg" id="8_6ev33"]
-[ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Cards/fire_card.tscn" id="9_wgvut"]
+[ext_resource type="PackedScene" uid="uid://df4fbxivaxyu7" path="res://Scenes/Items/Cards/thrown_card.tscn" id="8_dntca"]
+[ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Items/Cards/fire_card.tscn" id="9_wgvut"]
+[ext_resource type="PackedScene" uid="uid://cyoaqsbmcbq3p" path="res://Scenes/Items/Cards/thrown_fire_card.tscn" id="11_1i56d"]
+[ext_resource type="Texture2D" uid="uid://dsqsw01ae2hox" path="res://Icons/cold-face.png" id="12_o53oe"]
+[ext_resource type="PackedScene" uid="uid://imgfsc22wb6y" path="res://Scenes/Items/Consumables/the_fist.tscn" id="12_oof52"]
+[ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="13_0rvnj"]
+[ext_resource type="PackedScene" uid="uid://cit341d8bpxnd" path="res://Scenes/Items/Consumables/the_snail.tscn" id="13_xr071"]
+[ext_resource type="PackedScene" uid="uid://bjkomqmwn8sb7" path="res://Scenes/Items/Cards/thrown_ice_card.tscn" id="14_j08m4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_n0dqk"]
 
@@ -22,15 +29,32 @@ bg_color = Color(0, 0, 0, 0.686275)
 script = ExtResource("4_agihy")
 item_name = "Card"
 item_model_prefab = ExtResource("2_v0n5p")
+thrown_item_model_prefab = ExtResource("8_dntca")
 icon = ExtResource("5_ugvrm")
-item_id = 0
 
 [sub_resource type="Resource" id="Resource_k1a7s"]
 script = ExtResource("4_agihy")
 item_name = "Fire Card"
 item_model_prefab = ExtResource("9_wgvut")
+thrown_item_model_prefab = ExtResource("11_1i56d")
 icon = ExtResource("8_6ev33")
-item_id = 1
+
+[sub_resource type="Resource" id="Resource_txmua"]
+script = ExtResource("4_agihy")
+item_name = "Ice Card"
+item_model_prefab = ExtResource("13_0rvnj")
+thrown_item_model_prefab = ExtResource("14_j08m4")
+icon = ExtResource("12_o53oe")
+
+[sub_resource type="Resource" id="Resource_ci7mt"]
+script = ExtResource("4_agihy")
+item_name = "The Fist"
+item_model_prefab = ExtResource("12_oof52")
+
+[sub_resource type="Resource" id="Resource_m4268"]
+script = ExtResource("4_agihy")
+item_name = "The Snail"
+item_model_prefab = ExtResource("13_xr071")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_msfq4"]
 size = Vector3(1.1, 2, 1.1)
@@ -54,7 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62534, 0)
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.175)
 
-[node name="PlayerUI" type="Control" parent="." node_paths=PackedStringArray("player_health_label", "stopwatch_label", "enemy_count_label")]
+[node name="PlayerUI" type="Control" parent="." node_paths=PackedStringArray("player_health_label", "stopwatch_label", "enemy_count_label", "level_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +89,8 @@ mouse_filter = 1
 script = ExtResource("2_yjhvj")
 player_health_label = NodePath("HealthUI/HealthLabel")
 stopwatch_label = NodePath("StopwatchUI/TimerLabel")
-enemy_count_label = NodePath("EnemyCountUI/EnemyCountLabel")
+enemy_count_label = NodePath("LevelInfoUI/EnemyCountLabel")
+level_label = NodePath("LevelInfoUI/LevelLabel")
 
 [node name="Crosshair" type="ColorRect" parent="PlayerUI"]
 layout_mode = 1
@@ -133,7 +158,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 uppercase = true
 
-[node name="EnemyCountUI" type="ColorRect" parent="PlayerUI"]
+[node name="LevelInfoUI" type="ColorRect" parent="PlayerUI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -144,19 +169,30 @@ grow_horizontal = 0
 mouse_filter = 1
 color = Color(0, 0, 0, 0.686275)
 
-[node name="EnemyCountLabel" type="Label" parent="PlayerUI/EnemyCountUI"]
+[node name="EnemyCountLabel" type="Label" parent="PlayerUI/LevelInfoUI"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -0.5
-offset_top = -14.0
+offset_top = -28.0
 offset_right = 0.5
-offset_bottom = 14.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+uppercase = true
+
+[node name="LevelLabel" type="Label" parent="PlayerUI/LevelInfoUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
 uppercase = true
 
@@ -205,7 +241,7 @@ alignment = 1
 
 [node name="PickupArea" type="Area3D" parent="."]
 script = ExtResource("3_mhxvx")
-item_types = Array[ExtResource("4_agihy")]([SubResource("Resource_crx4w"), SubResource("Resource_k1a7s")])
+item_types = Array[ExtResource("4_agihy")]([SubResource("Resource_crx4w"), SubResource("Resource_k1a7s"), SubResource("Resource_txmua"), SubResource("Resource_ci7mt"), SubResource("Resource_m4268")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988614, 0)
@@ -213,4 +249,5 @@ shape = SubResource("BoxShape3D_msfq4")
 
 [connection signal="input_event" from="." to="PickupArea" method="_on_player_input_event"]
 [connection signal="body_entered" from="PickupArea" to="PickupArea" method="on_item_entered_area"]
-[connection signal="on_item_pickedup" from="PickupArea" to="PlayerUI/InventoryUI" method="pickup_item"]
+[connection signal="on_card_pickedup" from="PickupArea" to="PlayerUI/InventoryUI" method="pickup_card"]
+[connection signal="on_consumable_pickedup" from="PickupArea" to="PlayerUI/InventoryUI" method="pickup_consumable"]

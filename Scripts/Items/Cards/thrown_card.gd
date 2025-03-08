@@ -3,6 +3,7 @@ class_name ThrownCard
 
 const SPEED = 40
 var damage = 10
+var slow_value = 0
 
 @onready var mesh = $MeshInstance3D
 @onready var shape = $ShapeCast3D
@@ -15,8 +16,14 @@ func _process(delta: float) -> void:
 		
 		if obj.is_in_group("Enemy"):
 			obj.enemy_hit(damage)
+			
+			if !obj.slowed && slow_value != 0:
+				obj.slowed = true
+				obj.slowdown(slow_value)
+				slow_value = 0
+		else:
+			print("hit something")
 		
-		print("hit")
 		shape.enabled = false
 		queue_free()
 		

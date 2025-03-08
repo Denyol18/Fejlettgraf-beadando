@@ -5,6 +5,8 @@ class_name PlayerUI
 @export var player_health_label : Label
 @export var stopwatch_label : Label
 @export var enemy_count_label : Label
+@export var level_label : Label
+@export var level_1 = preload("res://Scripts/level_1.gd")
 
 var player_health
 var time = 0.0
@@ -12,7 +14,8 @@ var stopped = false
 var enemies
 
 func _ready() -> void:
-	player_health = $"..".MAX_HEALTH
+	player_health = $"..".health
+	level_label.text = level_1.LEVEL_NAME
 	
 
 func _process(delta: float) -> void:

@@ -8,11 +8,16 @@ class_name InventoryHandler
 
 var inventory_slots : Array[InventorySlot] = []
 
-var thrown_card = preload("res://Scenes/Cards/thrown_card.tscn")
-var thrown_fire_card = preload("res://Scenes/Cards/thrown_fire_card.tscn")
-
 var instance
 var player_rotation
+
+var fist_pickedup = false
+var snail_pickedup = false
+
+const FIST_BONUS_DAMAGE = 10
+var bonus_damage = 0
+const SNAIL_SLOW_VALUE = 2
+var slow_value = 0
 
 
 @onready var player_body = $"../.."
@@ -32,7 +37,7 @@ func _ready() -> void:
 	inventory_slots[0].is_in_focus = true
 
 
-func pickup_item(item : ItemData):
+func pickup_card(item : ItemData):
 	var found_slot = false
 	
 	for slot in inventory_slots:
@@ -46,9 +51,22 @@ func pickup_item(item : ItemData):
 		new_item.position = marker.global_position
 		new_item.transform.basis = marker.global_transform.basis
 		get_parent().add_child(new_item)
-		player_rotation = head.global_transform.basis.z.normalized()
+		player_rotation = marker.global_transform.basis.z.normalized()
 		new_item.apply_central_impulse(player_rotation * -10 + Vector3(0, 1.5, 0))
-		
+		print("cant pickup!")
+
+
+func pickup_consumable(item : ItemData):
+	match (item.item_name):
+		"The Fist":
+			fist_pickedup = true
+			bonus_damage += FIST_BONUS_DAMAGE
+			print("Next thrown card deals bonus damage!")
+		"The Snail":
+			snail_pickedup = true
+			slow_value += SNAIL_SLOW_VALUE
+			print("Next thrown card slows down the enemy!")
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("slot_up"):
@@ -80,21 +98,24 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("card_throw"):
 		for i in inventory_slots:
 			if i.is_in_focus && i.is_filled:
-				match i.slot_data.item_id:
-					0:
-						instance = thrown_card.instantiate()
-					1:
-						instance = thrown_fire_card.instantiate()
-				
+				instance = i.slot_data.thrown_item_model_prefab.instantiate()
+				if fist_pickedup:
+					instance.damage += bonus_damage
+					fist_pickedup = false
+				if snail_pickedup:
+					instance.slow_value += slow_value
+					snail_pickedup = false
 				remove_from_slot(i)
+				print("card thrown")
 
 	if Input.is_action_just_pressed("card_drop"):
 		for i in inventory_slots:
 			if i.is_in_focus && i.is_filled:
 				instance = i.slot_data.item_model_prefab.instantiate()
 				remove_from_slot(i)
-				player_rotation = head.global_transform.basis.z.normalized()
+				player_rotation = marker.global_transform.basis.z.normalized()
 				instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
+				print("card dropped")
 
 
 func remove_from_slot(slot : InventorySlot):

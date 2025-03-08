@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjkomqmwn8sb7"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Cards/thrown_ice_card.gd" id="1_5vera"]
+[ext_resource type="Material" uid="uid://bp8okl7xbk5ba" path="res://Materials/ice_card.tres" id="1_x1i41"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qx8ll"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1q7c"]
+
+[node name="ThrownIceCard" type="Node3D"]
+script = ExtResource("1_5vera")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+mesh = SubResource("BoxMesh_qx8ll")
+surface_material_override/0 = ExtResource("1_x1i41")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+shape = SubResource("BoxShape3D_k1q7c")
+target_position = Vector3(0, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
