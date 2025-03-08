@@ -17,10 +17,13 @@ func _process(delta: float) -> void:
 		if obj.is_in_group("Enemy"):
 			obj.enemy_hit(damage)
 			
-			if !obj.slowed && slow_value != 0:
-				obj.slowed = true
-				obj.slowdown(slow_value)
-				slow_value = 0
+			if slow_value != 0:
+				if !obj.slowed && !obj.frozen:
+					obj.slowed = true
+					obj.slowdown(slow_value)
+					slow_value = 0
+				else:
+					print("slowness not applied")
 		else:
 			print("hit something")
 		

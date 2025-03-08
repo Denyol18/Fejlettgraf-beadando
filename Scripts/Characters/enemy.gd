@@ -25,27 +25,36 @@ func burning(damage):
 		health -= damage
 		print("ON FIRE!!!")
 		death_check()
+		
 	on_fire = false
 
 
 func slowdown(slow_value):
-	print("Enemy speed: %s" % speed)
-	if slow_value > speed:
-		speed = 1
-	else:
-		speed -= slow_value
-	print("Enemy speed: %s" % speed)
-	await get_tree().create_timer(2).timeout
+	for n in 3:
+		if frozen:
+			return
+			
+		if slow_value > speed:
+			speed = 1
+		else:
+			speed = SPEED_ORIGINAL-slow_value
+		print("Enemy speed: %s" % speed)
+		await get_tree().create_timer(1).timeout
+		
 	speed = SPEED_ORIGINAL
 	slowed = false
 	print("Enemy speed: %s" % speed)
 
 
 func freeze():
-	print("Enemy speed: %s" % speed)
-	speed = 0.0
-	print("Enemy speed: %s" % speed)
-	await get_tree().create_timer(2).timeout
+	for n in 2:
+		if !frozen:
+			return
+
+		speed = 0.0
+		print("Enemy speed: %s" % speed)
+		await get_tree().create_timer(1).timeout
+		
 	speed = SPEED_ORIGINAL
 	frozen = false
 	print("Enemy speed: %s" % speed)

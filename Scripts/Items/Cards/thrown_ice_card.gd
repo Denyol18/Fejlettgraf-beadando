@@ -10,19 +10,22 @@ func _process(delta: float) -> void:
 		var obj = shape.get_collider(0)
 		
 		if obj.is_in_group("Enemy"):
-			obj.enemy_hit(damage+ICE_CARD_PLUS_DAMAGE)
-			
-			if !obj.slowed && slow_value != 0:
-				obj.slowed = true
-				obj.slowdown(slow_value)
-				slow_value = 0
 			
 			# ice card specific code begin
-			if !obj.frozen:
+			if !obj.frozen && !obj.on_fire:
+				obj.enemy_hit(damage+ICE_CARD_PLUS_DAMAGE)
 				obj.frozen = true
 				obj.freeze()
+				
+				if slow_value != 0:
+					if !obj.slowed && !obj.frozen:
+						obj.slowed = true
+						obj.slowdown(slow_value)
+						slow_value = 0
+					else:
+						print("slowness not applied")
 			else:
-				print("cant apply the effect!")
+				print("freeze not applied!")
 			# ice card specific code end
 		else:
 			print("hit something")	
