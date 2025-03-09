@@ -20,10 +20,16 @@ func _process(delta: float) -> void:
 				if slow_value != 0:
 					if !obj.slowed && !obj.frozen:
 						obj.slowed = true
-						obj.slowdown(slow_value)
+						obj.slowdown(slow_value, slow_damage, slow_att_speed)
 						slow_value = 0
 					else:
-						print("slowness not applied")
+						slow_value = 0
+						print("slowing not applied")
+			
+			elif obj.frozen:
+				obj.enemy_hit(damage)
+				print("only damage, no freeze")
+				
 			else:
 				print("freeze not applied!")
 			# ice card specific code end

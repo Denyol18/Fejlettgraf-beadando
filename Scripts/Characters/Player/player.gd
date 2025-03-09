@@ -10,6 +10,8 @@ var speed = 8.0
 var gravity = 9.8
 var sensitivity = 0.003
 
+signal player_hit
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
@@ -22,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(80))
 
 
 func _physics_process(delta: float) -> void:
@@ -47,3 +49,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 
 	move_and_slide()
+
+
+func hit(damage):
+	if damage < health:
+		health -= damage
+		print("player hp: %s" % health)
+	else:
+		health = 0
+		print("player dead")
+	emit_signal("player_hit")

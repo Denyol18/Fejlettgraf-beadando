@@ -19,17 +19,20 @@ func _process(delta: float) -> void:
 				if slow_value != 0:
 					if !obj.slowed && !obj.frozen:
 						obj.slowed = true
-						obj.slowdown(slow_value)
+						obj.slowdown(slow_value, slow_damage, slow_att_speed)
 						slow_value = 0
 					else:
-						print("slowness not applied")
-					
+						slow_value = 0
+						print("slowing not applied")
+			
+			elif obj.on_fire:
+				obj.enemy_hit(damage)
+				print("only damage, no burn")
+			
 			elif obj.frozen:
 				obj.speed = obj.SPEED_ORIGINAL
 				obj.frozen = false
 				print("ice melted! %s" % obj.speed)
-			else:
-				print("burn not applied!")
 			# fire card specific code end
 		else:
 			print("hit something")	

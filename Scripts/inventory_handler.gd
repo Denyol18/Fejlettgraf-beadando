@@ -17,7 +17,11 @@ var snail_pickedup = false
 const FIST_BONUS_DAMAGE = 10
 var bonus_damage = 0
 const SNAIL_SLOW_VALUE = 2
+const SNAIL_ATTACK_DAMAGE = 3
+const SNAIL_ATTACK_SPEED = 0.3
 var slow_value = 0
+var slow_damage = 0
+var slow_att_speed = 0
 
 
 @onready var player_body = $"../.."
@@ -35,6 +39,9 @@ func _ready() -> void:
 	
 	inventory_slots[0].grab_focus()
 	inventory_slots[0].is_in_focus = true
+	
+	player_rotation = marker.global_transform.basis.z.normalized()
+	
 
 
 func pickup_card(item : ItemData):
@@ -47,13 +54,15 @@ func pickup_card(item : ItemData):
 			break
 			
 	if (!found_slot):
-		var new_item = item.item_model_prefab.instantiate()
-		new_item.position = marker.global_position
-		new_item.transform.basis = marker.global_transform.basis
-		get_parent().add_child(new_item)
-		player_rotation = marker.global_transform.basis.z.normalized()
-		new_item.apply_central_impulse(player_rotation * -10 + Vector3(0, 1.5, 0))
+		instance = item.item_model_prefab.instantiate()
+		layer_changer(instance)
+		instance.position = marker.global_position
+		instance.transform.basis = marker.global_transform.basis
+		get_parent().add_child(instance)
+		instance.apply_central_impulse(player_rotation * -10 + Vector3(0, 1.5, 0))
 		print("cant pickup!")
+		await get_tree().create_timer(1).timeout
+		layer_changer_back(instance)
 
 
 func pickup_consumable(item : ItemData):
@@ -65,6 +74,8 @@ func pickup_consumable(item : ItemData):
 		"The Snail":
 			snail_pickedup = true
 			slow_value += SNAIL_SLOW_VALUE
+			slow_damage += SNAIL_ATTACK_DAMAGE
+			slow_att_speed += SNAIL_ATTACK_SPEED
 			print("Next thrown card slows down the enemy!")
 
 
@@ -101,9 +112,13 @@ func _process(_delta: float) -> void:
 				instance = i.slot_data.thrown_item_model_prefab.instantiate()
 				if fist_pickedup:
 					instance.damage += bonus_damage
+					bonus_damage = 0
 					fist_pickedup = false
 				if snail_pickedup:
 					instance.slow_value += slow_value
+					instance.slow_damage += slow_damage
+					instance.slow_att_speed += slow_att_speed
+					slow_value = 0
 					snail_pickedup = false
 				remove_from_slot(i)
 				print("card thrown")
@@ -112,10 +127,12 @@ func _process(_delta: float) -> void:
 		for i in inventory_slots:
 			if i.is_in_focus && i.is_filled:
 				instance = i.slot_data.item_model_prefab.instantiate()
+				layer_changer(instance)
 				remove_from_slot(i)
-				player_rotation = marker.global_transform.basis.z.normalized()
 				instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
 				print("card dropped")
+				await get_tree().create_timer(1).timeout
+				layer_changer_back(instance)
 
 
 func remove_from_slot(slot : InventorySlot):
@@ -126,3 +143,21 @@ func remove_from_slot(slot : InventorySlot):
 	slot.is_filled = false
 	slot.slot_data = null
 	slot.icon_slot.texture = null
+
+
+func layer_changer(card):
+	card.set_collision_layer_value(2, true)
+	card.set_collision_mask_value(2, true)
+	card.set_collision_layer_value(1, false)
+	card.set_collision_mask_value(1, false)
+	card.set_collision_layer_value(3, false)
+	card.set_collision_mask_value(3, false)
+	
+
+func layer_changer_back(card):
+	card.set_collision_layer_value(2, false)
+	card.set_collision_mask_value(2, false)
+	card.set_collision_layer_value(1, true)
+	card.set_collision_mask_value(1, true)
+	card.set_collision_layer_value(3, true)
+	card.set_collision_mask_value(3, true)

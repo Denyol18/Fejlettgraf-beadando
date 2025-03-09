@@ -11,7 +11,8 @@ func on_item_entered_area(body: Node3D):
 		body.queue_free()
 		var item_prefab = body.scene_file_path
 		for i in item_types.size():
-			if (item_types[i].item_model_prefab != null and item_types[i].item_model_prefab.resource_path == item_prefab):
+			if (item_types[i].item_model_prefab != null and 
+			item_types[i].item_model_prefab.resource_path == item_prefab):
 				print("Item picked up: " + item_types[i].item_name)
 				if (body is Card):
 					on_card_pickedup.emit(item_types[i])

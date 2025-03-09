@@ -4,6 +4,8 @@ class_name ThrownCard
 const SPEED = 40
 var damage = 10
 var slow_value = 0
+var slow_damage = 0
+var slow_att_speed = 0
 
 @onready var mesh = $MeshInstance3D
 @onready var shape = $ShapeCast3D
@@ -20,10 +22,11 @@ func _process(delta: float) -> void:
 			if slow_value != 0:
 				if !obj.slowed && !obj.frozen:
 					obj.slowed = true
-					obj.slowdown(slow_value)
+					obj.slowdown(slow_value, slow_damage, slow_att_speed)
 					slow_value = 0
 				else:
-					print("slowness not applied")
+					slow_value = 0
+					print("slowing not applied")
 		else:
 			print("hit something")
 		

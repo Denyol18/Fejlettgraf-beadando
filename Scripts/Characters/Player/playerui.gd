@@ -14,12 +14,12 @@ var stopped = false
 var enemies
 
 func _ready() -> void:
-	player_health = $"..".health
 	level_label.text = level_1.LEVEL_NAME
 	
 
 func _process(delta: float) -> void:
 	update_stopwatch_label()
+	player_health = $"..".health
 	player_health_label.text = "Health: %s" % player_health
 	enemy_count_label.text = "Enemies left: %s" % count_enemies()
 	
