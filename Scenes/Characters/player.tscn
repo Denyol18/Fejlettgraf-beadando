@@ -70,10 +70,12 @@ mesh = SubResource("CapsuleMesh_n0dqk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ygh17")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62534, 0)
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
@@ -242,11 +244,13 @@ theme_override_constants/separation = 5
 alignment = 1
 
 [node name="PickupArea" type="Area3D" parent="."]
+visible = false
 script = ExtResource("3_mhxvx")
 item_types = Array[ExtResource("4_agihy")]([SubResource("Resource_crx4w"), SubResource("Resource_k1a7s"), SubResource("Resource_txmua"), SubResource("Resource_ci7mt"), SubResource("Resource_m4268")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988614, 0)
+visible = false
 shape = SubResource("BoxShape3D_msfq4")
 
 [connection signal="input_event" from="." to="PickupArea" method="_on_player_input_event"]

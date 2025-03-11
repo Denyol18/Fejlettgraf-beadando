@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/Characters/player.tscn" id="1_f61ji"]
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_v2bp4"]
-[ext_resource type="PackedScene" uid="uid://bueucldgu2a2o" path="res://Scenes/Characters/enemy.tscn" id="2_perug"]
 [ext_resource type="Material" uid="uid://coe5vnirubssw" path="res://Materials/level_1.tres" id="3_6qoqe"]
 [ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="3_vxb8t"]
 [ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="4_e6qsj"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Items/Cards/fire_card.tscn" id="6_011um"]
 [ext_resource type="PackedScene" uid="uid://cit341d8bpxnd" path="res://Scenes/Items/Consumables/the_snail.tscn" id="6_sv3xe"]
 [ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="9_4eja2"]
+[ext_resource type="PackedScene" uid="uid://5rbfv240vx27" path="res://Scenes/Characters/speedster.tscn" id="10_kf4jy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k54gi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -61,11 +61,11 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3p3fj")
 
-[node name="Enemy" parent="." instance=ExtResource("2_perug")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6715, 1, -13.3406)
-player_path = NodePath("../Player")
-
 [node name="Player" parent="." instance=ExtResource("1_f61ji")]
+
+[node name="Speedster" parent="." instance=ExtResource("10_kf4jy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86022, 1.12321, -13.0025)
+player_path = NodePath("../Player")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 collision_layer = 7
@@ -78,6 +78,7 @@ surface_material_override/0 = ExtResource("3_6qoqe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(30, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -14.7526)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_flb5w")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
@@ -92,6 +93,7 @@ surface_material_override/0 = ExtResource("3_6qoqe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(30, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -14.7526)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_flb5w")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
@@ -106,6 +108,7 @@ surface_material_override/0 = ExtResource("3_6qoqe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
 transform = Transform3D(30, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -14.7526)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_flb5w")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="."]
@@ -120,6 +123,7 @@ surface_material_override/0 = ExtResource("3_6qoqe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 transform = Transform3D(30, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -14.7526)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_flb5w")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -137,6 +141,7 @@ surface_material_override/0 = ExtResource("4_e6qsj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D7"]
 transform = Transform3D(10.3923, 0, 1, 0, 2.1, 0, -6, 0, 1.73205, -1.4973, 0.5776, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_fqhsd")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="NavigationRegion3D"]
@@ -151,6 +156,7 @@ surface_material_override/0 = ExtResource("4_e6qsj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D6"]
 transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0.0209912, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_xycqb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
@@ -164,6 +170,7 @@ surface_material_override/0 = ExtResource("3_6qoqe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, -0.05, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_0rln0")
 
 [node name="Card" parent="." instance=ExtResource("3_vxb8t")]

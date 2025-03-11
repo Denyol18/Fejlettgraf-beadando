@@ -4,13 +4,17 @@ class_name Player
 
 const JUMP_VELOCITY = 4.8
 const MAX_HEALTH = 50
+const HIT_STAGGER = 30
 
 var health = MAX_HEALTH
 var speed = 8.0
 var gravity = 9.8
 var sensitivity = 0.003
 
+var is_bleeding = false
+
 signal player_hit
+signal player_bleeding
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -51,11 +55,22 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func hit(damage):
+func hit(damage, knockback):
+	emit_signal("player_hit")
 	if damage < health:
 		health -= damage
 		print("player hp: %s" % health)
+		if knockback != Vector3.ZERO:
+			velocity += knockback * HIT_STAGGER
 	else:
 		health = 0
 		print("player dead")
-	emit_signal("player_hit")
+
+
+func bleeding(damage):
+	for n in 3:
+		await get_tree().create_timer(1).timeout
+		print("Player bleeding!!!")
+		hit(damage, 0)
+		
+	is_bleeding = false

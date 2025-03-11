@@ -2,15 +2,15 @@ extends CharacterBody3D
 class_name Enemy
 
 
-const MAX_HEALTH = 50
-const SPEED_ORIGINAL = 5
-const ATTACK_DAMAGE_ORIGINAL = 10
-const ATTACK_SPEED_ORIGINAL = 1
+var max_health = 50
+var speed_original = 5
+var attack_damage_original = 10
+var attack_speed_original = 1
 
-var health = MAX_HEALTH
-var speed = SPEED_ORIGINAL
-var attack_damage = ATTACK_DAMAGE_ORIGINAL
-var attack_speed = ATTACK_SPEED_ORIGINAL
+var health = max_health
+var speed = speed_original
+var attack_damage = attack_damage_original
+var attack_speed = attack_speed_original
 
 var on_fire = false
 var slowed = false
@@ -18,6 +18,7 @@ var frozen = false
 
 var player = null
 @export var player_path : NodePath
+var next_nav_point
 var player_in_range = false
 
 @onready var nav_agent = $NavigationAgent3D
@@ -30,12 +31,12 @@ func _ready():
 func _process(delta: float) -> void:
 	velocity = Vector3.ZERO
 	
-	if !player_in_range:
+	if !player_in_range && !frozen:
 		nav_agent.set_target_position(player.global_transform.origin)
-		var next_nav_point = nav_agent.get_next_path_position()
+		next_nav_point = nav_agent.get_next_path_position()
 		velocity = (next_nav_point - global_transform.origin).normalized() * speed
 		rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
-	else:
+	elif !frozen:
 		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
 	
 	move_and_slide()
@@ -65,22 +66,27 @@ func slowdown(slow_value, slow_damage, slow_att_speed):
 		if frozen:
 			return
 			
-		if (SPEED_ORIGINAL-slow_value <= 1 && 
-			ATTACK_DAMAGE_ORIGINAL-slow_damage <= 1 &&
-		 	ATTACK_SPEED_ORIGINAL+slow_att_speed >= 1.9):
+		if speed_original-slow_value <= 1:
 			speed = 1
+		else:
+			speed = speed_original-slow_value
+			
+		if attack_damage_original-slow_damage <= 1:
 			attack_damage = 1
+		else:
+			attack_damage = attack_damage_original-slow_damage
+			
+		if attack_speed_original+slow_att_speed >= 1.9:
 			attack_speed = 1.9
 		else:
-			speed = SPEED_ORIGINAL-slow_value
-			attack_damage = ATTACK_DAMAGE_ORIGINAL-slow_damage
-			attack_speed = ATTACK_SPEED_ORIGINAL+slow_att_speed
+			attack_speed = attack_speed_original+slow_att_speed
+			
 		print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 		await get_tree().create_timer(1).timeout
 		
-	speed = SPEED_ORIGINAL
-	attack_damage = ATTACK_DAMAGE_ORIGINAL
-	attack_speed = ATTACK_SPEED_ORIGINAL
+	speed = speed_original
+	attack_damage = attack_damage_original
+	attack_speed = attack_speed_original
 	slowed = false
 	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 
@@ -96,9 +102,9 @@ func freeze():
 		print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 		await get_tree().create_timer(1).timeout
 		
-	speed = SPEED_ORIGINAL
-	attack_damage = ATTACK_DAMAGE_ORIGINAL
-	attack_speed = ATTACK_SPEED_ORIGINAL
+	speed = speed_original
+	attack_damage = attack_damage_original
+	attack_speed = attack_speed_original
 	frozen = false
 	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 
@@ -109,7 +115,7 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout
 			if player_in_range && attack_damage != 0:
-				get_tree().call_group("Player", "hit", attack_damage)
+				get_tree().call_group("Player", "hit", attack_damage, 0)
 
 
 func _on_hit_area_body_exited(body: Node3D) -> void:

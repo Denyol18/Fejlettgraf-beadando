@@ -18,4 +18,5 @@ mesh = SubResource("SphereMesh_sqsx8")
 surface_material_override/0 = ExtResource("1_cgtkx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_2ngk1")

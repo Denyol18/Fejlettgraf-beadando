@@ -40,7 +40,6 @@ func _ready() -> void:
 	inventory_slots[0].grab_focus()
 	inventory_slots[0].is_in_focus = true
 	
-	player_rotation = marker.global_transform.basis.z.normalized()
 	
 
 
@@ -59,6 +58,7 @@ func pickup_card(item : ItemData):
 		instance.position = marker.global_position
 		instance.transform.basis = marker.global_transform.basis
 		get_parent().add_child(instance)
+		player_rotation = marker.global_transform.basis.z.normalized()
 		instance.apply_central_impulse(player_rotation * -10 + Vector3(0, 1.5, 0))
 		print("cant pickup!")
 		await get_tree().create_timer(1).timeout
@@ -129,6 +129,7 @@ func _process(_delta: float) -> void:
 				instance = i.slot_data.item_model_prefab.instantiate()
 				layer_changer(instance)
 				remove_from_slot(i)
+				player_rotation = marker.global_transform.basis.z.normalized()
 				instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
 				print("card dropped")
 				await get_tree().create_timer(1).timeout

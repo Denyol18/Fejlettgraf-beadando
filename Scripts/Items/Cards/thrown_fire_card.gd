@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 				print("only damage, no burn")
 			
 			elif obj.frozen:
-				obj.speed = obj.SPEED_ORIGINAL
+				obj.speed = obj.speed_original
 				obj.frozen = false
 				print("ice melted! %s" % obj.speed)
 			# fire card specific code end
