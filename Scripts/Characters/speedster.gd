@@ -25,7 +25,7 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout
 			if player_in_range && attack_damage != 0:
-				get_tree().call_group("Player", "hit", attack_damage, 0)
+				get_tree().call_group("Player", "hit", attack_damage, Vector3.ZERO)
 				if !body.is_bleeding:
 					body.is_bleeding = true
 					get_tree().call_group("Player", "bleeding", BLEED_DAMAGE)

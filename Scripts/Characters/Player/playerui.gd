@@ -6,15 +6,16 @@ class_name PlayerUI
 @export var stopwatch_label : Label
 @export var enemy_count_label : Label
 @export var level_label : Label
-@export var level_1 = preload("res://Scripts/level_1.gd")
+@export var level_1_name = preload("res://Scripts/level_1.gd").LEVEL_NAME
 
 var player_health
 var time = 0.0
 var stopped = false
 var enemies
 
+
 func _ready() -> void:
-	level_label.text = level_1.LEVEL_NAME
+	level_label.text = level_1_name
 	
 
 func _process(delta: float) -> void:
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 	
 	if count_enemies() == 0:
 		stopped = true
+		GlobalVariables.time_to_complete = stopwatch_label.text
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://Scenes/level_completed.tscn")
 	
 	if stopped:
 		return
