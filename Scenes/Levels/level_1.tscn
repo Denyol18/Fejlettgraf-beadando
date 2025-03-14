@@ -250,7 +250,7 @@ mouse_filter = 1
 color = Color(1, 0, 0, 0.27451)
 
 [node name="Enemy" parent="." instance=ExtResource("10_eg0dr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2632, 1.06463, -13.0516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 7)
 player_path = NodePath("../Player")
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

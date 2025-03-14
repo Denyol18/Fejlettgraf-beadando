@@ -21,6 +21,8 @@ var player = null
 var next_nav_point
 var player_in_range = false
 
+var sees_player = false
+
 @onready var nav_agent = $NavigationAgent3D
 
 
@@ -31,21 +33,24 @@ func _ready():
 func _process(delta: float) -> void:
 	velocity = Vector3.ZERO
 	
-	if !player_in_range && !frozen:
-		nav_agent.set_target_position(player.global_transform.origin)
-		next_nav_point = nav_agent.get_next_path_position()
-		velocity = (next_nav_point - global_transform.origin).normalized() * speed
-		rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
-	elif !frozen:
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
-	
-	move_and_slide()
+	if sees_player:
+		if !player_in_range && !frozen:
+			nav_agent.set_target_position(player.global_transform.origin)
+			next_nav_point = nav_agent.get_next_path_position()
+			velocity = (next_nav_point - global_transform.origin).normalized() * speed
+			rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
+		elif !frozen:
+			look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
+		
+		move_and_slide()
 
 
 func enemy_hit(damage):
 	if damage < health:
 		health -= damage
 		print("enemy hp: %s" % health)
+		if !sees_player:
+			sees_player = true
 	else:
 		health = 0
 		queue_free()
@@ -111,6 +116,8 @@ func freeze():
 
 func _on_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
+		if !sees_player:
+			sees_player = true
 		player_in_range = true
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout
@@ -121,3 +128,15 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 func _on_hit_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		player_in_range = false
+
+
+func _on_timer_timeout() -> void:
+	var overlaps = $VisionArea.get_overlapping_bodies()
+	if overlaps.size():
+		for overlap in overlaps:
+			if overlap.is_in_group("Player"):
+				#$VisionRayCast.look_at(overlap.global_transform.origin, Vector3.UP)
+				if $VisionRayCast.is_colliding():
+					var collider = $VisionRayCast.get_collider()
+					if collider.is_in_group("Player"):
+						sees_player = true
