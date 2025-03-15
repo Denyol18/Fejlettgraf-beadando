@@ -23,7 +23,6 @@ var slow_value = 0
 var slow_damage = 0
 var slow_att_speed = 0
 
-
 @onready var player_body = $"../.."
 @onready var head = $"../../Head"
 @onready var marker = $"../../Head/Camera3D/Marker3D"
@@ -40,8 +39,17 @@ func _ready() -> void:
 	inventory_slots[0].grab_focus()
 	inventory_slots[0].is_in_focus = true
 	
+	var starter : ItemData = ItemData.new()
+	starter.item_name = "Card"
+	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
+	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
+	starter.icon = preload("res://Icons/icon.svg")
 	
-
+	inventory_slots[0].fill_slot(starter)
+	inventory_slots[1].fill_slot(starter)
+	inventory_slots[2].fill_slot(starter)
+	inventory_slots[3].fill_slot(starter)
+	inventory_slots[4].fill_slot(starter)
 
 func pickup_card(item : ItemData):
 	var found_slot = false
@@ -49,6 +57,7 @@ func pickup_card(item : ItemData):
 	for slot in inventory_slots:
 		if (!slot.is_filled):
 			slot.fill_slot(item)
+			GlobalVariables.cards_on_ground -= 1
 			found_slot = true
 			break
 			
@@ -58,10 +67,11 @@ func pickup_card(item : ItemData):
 		instance.position = marker.global_position
 		instance.transform.basis = marker.global_transform.basis
 		get_parent().add_child(instance)
+		GlobalVariables.cards_on_ground += 1
 		player_rotation = marker.global_transform.basis.z.normalized()
-		instance.apply_central_impulse(player_rotation * -10 + Vector3(0, 1.5, 0))
+		instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
 		print("cant pickup!")
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.5).timeout
 		layer_changer_back(instance)
 
 
@@ -80,6 +90,8 @@ func pickup_consumable(item : ItemData):
 
 
 func _process(_delta: float) -> void:
+	is_game_over()
+	
 	if Input.is_action_just_released("slot_up"):
 		var index = 0
 		for slot in inventory_slots:
@@ -131,8 +143,9 @@ func _process(_delta: float) -> void:
 				remove_from_slot(i)
 				player_rotation = marker.global_transform.basis.z.normalized()
 				instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
+				GlobalVariables.cards_on_ground += 1
 				print("card dropped")
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(0.5).timeout
 				layer_changer_back(instance)
 
 
@@ -144,6 +157,20 @@ func remove_from_slot(slot : InventorySlot):
 	slot.is_filled = false
 	slot.slot_data = null
 	slot.icon_slot.texture = null
+
+
+func is_game_over():
+	if GlobalVariables.cards_on_ground == 0:
+		var is_empty = true
+		
+		for slot in inventory_slots:
+			if (slot.is_filled):
+				is_empty = false
+				break
+				
+		if is_empty:
+			await get_tree().create_timer(3).timeout
+			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 
 func layer_changer(card):

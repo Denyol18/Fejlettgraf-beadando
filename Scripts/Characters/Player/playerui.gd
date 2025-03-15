@@ -5,8 +5,7 @@ class_name PlayerUI
 @export var player_health_label : Label
 @export var stopwatch_label : Label
 @export var enemy_count_label : Label
-@export var level_label : Label
-@export var level_1_name = preload("res://Scripts/level_1.gd").LEVEL_NAME
+@export var level_label : Label 
 
 var player_health
 var time = 0.0
@@ -14,17 +13,15 @@ var stopped = false
 var enemies
 
 
-func _ready() -> void:
-	level_label.text = level_1_name
-	
-
 func _process(delta: float) -> void:
 	update_stopwatch_label()
 	player_health = $"..".health
-	player_health_label.text = "Health: %s" % player_health
-	enemy_count_label.text = "Enemies left: %s" % count_enemies()
 	
-	if count_enemies() == 0:
+	level_label.text = GlobalVariables.level_name
+	player_health_label.text = "Health: %s" % player_health
+	enemy_count_label.text = "Enemies left: %s" % GlobalVariables.enemies.size()
+	
+	if GlobalVariables.enemies.size() == 0:
 		stopped = true
 		GlobalVariables.time_to_complete = stopwatch_label.text
 		await get_tree().create_timer(3).timeout
@@ -37,11 +34,6 @@ func _process(delta: float) -> void:
 
 func reset():
 	time = 0.0
-
-
-func count_enemies():
-	enemies = $".".get_tree().get_nodes_in_group("Enemy")
-	return enemies.size()
 	
 
 func update_stopwatch_label():

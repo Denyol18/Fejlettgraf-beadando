@@ -135,7 +135,7 @@ func _on_timer_timeout() -> void:
 	if overlaps.size():
 		for overlap in overlaps:
 			if overlap.is_in_group("Player"):
-				#$VisionRayCast.look_at(overlap.global_transform.origin, Vector3.UP)
+				$VisionRayCast.look_at(overlap.global_transform.origin, Vector3.UP)
 				if $VisionRayCast.is_colliding():
 					var collider = $VisionRayCast.get_collider()
 					if collider.is_in_group("Player"):
