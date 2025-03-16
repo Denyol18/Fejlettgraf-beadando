@@ -48,8 +48,6 @@ func _ready() -> void:
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)
 	inventory_slots[2].fill_slot(starter)
-	inventory_slots[3].fill_slot(starter)
-	inventory_slots[4].fill_slot(starter)
 
 func pickup_card(item : ItemData):
 	var found_slot = false
