@@ -1,9 +1,9 @@
 [gd_scene load_steps=32 format=3 uid="uid://ckkvp1fnfvbxi"]
 
 [ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/Characters/player.tscn" id="1_f61ji"]
-[ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_v2bp4"]
+[ext_resource type="Script" path="res://Scripts/Levels/level_1.gd" id="1_v2bp4"]
 [ext_resource type="Material" uid="uid://coe5vnirubssw" path="res://Materials/level_1.tres" id="3_6qoqe"]
-[ext_resource type="Script" path="res://Scripts/spawn_point.gd" id="4_5uwfm"]
+[ext_resource type="Script" path="res://Scripts/Levels/spawn_point.gd" id="4_5uwfm"]
 [ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="4_e6qsj"]
 [ext_resource type="PackedScene" uid="uid://bueucldgu2a2o" path="res://Scenes/Characters/enemy.tscn" id="10_eg0dr"]
 
@@ -11,12 +11,12 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_mgc3m"]
+[sub_resource type="Sky" id="Sky_yukid"]
 sky_material = SubResource("ProceduralSkyMaterial_k54gi")
 
 [sub_resource type="Environment" id="Environment_3p3fj"]
 background_mode = 2
-sky = SubResource("Sky_mgc3m")
+sky = SubResource("Sky_yukid")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -106,13 +106,15 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="PlayerHitUi"]
 visible = false
-layout_mode = 0
-offset_left = -94.0
-offset_top = -105.0
-offset_right = 1212.0
-offset_bottom = 686.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -38.35
+anchor_top = -30.375
+anchor_right = 72.925
+anchor_bottom = 44.775
 mouse_filter = 1
 color = Color(1, 0, 0, 0.27451)
+metadata/_edit_use_anchors_ = true
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -392,258 +394,260 @@ script = ExtResource("4_5uwfm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8129, 1.8, -18.7963)
 script = ExtResource("4_5uwfm")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="Obstacles" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_kgs8o")
 
-[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Floor" type="StaticBody3D" parent="Obstacles"]
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Floor"]
 transform = Transform3D(45, 0, 0, 0, 0.1, 0, 0, 0, 45, 0, -0.05, 0)
 mesh = SubResource("BoxMesh_pq50a")
 surface_material_override/0 = ExtResource("3_6qoqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Floor"]
 transform = Transform3D(45, 0, 0, 0, 0.1, 0, 0, 0, 45, 0, -0.05, 0)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_heens")
 
-[node name="Wall1" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall1" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.7336)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall1"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, 3)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall1"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, 3)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_i5glt")
 
-[node name="Wall2" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall2" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall2"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 15, 1.493, 5.968)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall2"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 15, 1.493, 5.968)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_sskc8")
 
-[node name="Wall5" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall5" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall5"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 19, 1.493, -13)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall5"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 19, 1.493, -13)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_mip74")
 
-[node name="Wall7" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall7" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall7"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 0, 1.493, -13)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall7"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, 0, 1.493, -13)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_ikqyi")
 
-[node name="Wall8" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall8" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall8"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall8"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.493, -28.0508)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall8"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.493, -28.0508)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_j5dce")
 
-[node name="Wall6" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall6" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall6"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, -19, 1.493, -13)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall6"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, -19, 1.493, -13)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_820qg")
 
-[node name="Wall3" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall3" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0242)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall3"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, -15, 1.493, 5.968)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall3"]
 transform = Transform3D(-3.49691e-07, 0, 2, 0, 3, 0, -8, 0, -8.74228e-08, -15, 1.493, 5.968)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_oce37")
 
-[node name="Wall4" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Wall4" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.7336)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Wall4"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, -15)
 mesh = SubResource("BoxMesh_ug6nm")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall4"]
 transform = Transform3D(30, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1.5, -15)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_4a7cl")
 
-[node name="Box" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Box" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -12)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Box"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Box"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 5, 0, 0.606, 11)
 mesh = SubResource("BoxMesh_k2nqt")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Box"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 5, 0, 0.606, 11)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_b4brp")
 
-[node name="Box3" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Box3" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -30.7119)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Box3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Box3"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 4, 10.5687, 0.606, 10.5707)
 mesh = SubResource("BoxMesh_k2nqt")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Box3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box3"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 4, 10.5687, 0.606, 10.5707)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_gvagc")
 
-[node name="Box4" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Box4" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.56803, 0, -30.7119)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Box4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Box4"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 4, -28.2949, 0.606, 10.571)
 mesh = SubResource("BoxMesh_k2nqt")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Box4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box4"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 4, -28.2949, 0.606, 10.571)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_02kn1")
 
-[node name="Box2" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Box2" type="StaticBody3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -12)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Box2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Box2"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 5, 0, 0.606, 11)
 mesh = SubResource("BoxMesh_k2nqt")
 surface_material_override/0 = ExtResource("4_e6qsj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Box2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box2"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 5, 0, 0.606, 11)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_nmbb3")
 
-[node name="MainWall1" type="StaticBody3D" parent="."]
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="MainWall1" type="StaticBody3D" parent="Walls"]
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MainWall1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/MainWall1"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -22.3623)
 mesh = SubResource("BoxMesh_g7jf3")
 surface_material_override/0 = ExtResource("3_6qoqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MainWall1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall1"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -22.3623)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_5rfc8")
 
-[node name="MainWall2" type="StaticBody3D" parent="."]
+[node name="MainWall2" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.5094)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MainWall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/MainWall2"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -7.27268)
 mesh = SubResource("BoxMesh_g7jf3")
 surface_material_override/0 = ExtResource("3_6qoqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MainWall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall2"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -7.27268)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_wfjai")
 
-[node name="MainWall3" type="StaticBody3D" parent="."]
+[node name="MainWall3" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.0188513)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MainWall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/MainWall3"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 3.29688e-07, 2.41427, -22.2762)
 mesh = SubResource("BoxMesh_g7jf3")
 surface_material_override/0 = ExtResource("3_6qoqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MainWall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall3"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, 3.29688e-07, 2.41427, -22.2762)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_me1v5")
 
-[node name="MainWall4" type="StaticBody3D" parent="."]
+[node name="MainWall4" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.6339, 0, -0.0188513)
 collision_layer = 7
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MainWall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/MainWall4"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, -3.25963e-07, 2.41427, -7.33928)
 mesh = SubResource("BoxMesh_g7jf3")
 surface_material_override/0 = ExtResource("3_6qoqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MainWall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall4"]
 transform = Transform3D(45, 0, 0, 0, 5, 0, 0, 0, 0.5, -3.25963e-07, 2.41427, -7.33928)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_x8uih")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://duue3m5a75sh"]
 
-[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_wncxd"]
+[ext_resource type="Script" path="res://Scripts/Screens/game_over.gd" id="1_wncxd"]
 
-[node name="GameOver" type="Control"]
+[node name="GameOver" type="Control" node_paths=PackedStringArray("game_over_reason_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wncxd")
+game_over_reason_label = NodePath("VBoxContainer2/Reason")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -26,28 +27,35 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="VBoxContainer2"]
+[node name="GameOver" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 11
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Retry" type="Button" parent="VBoxContainer2"]
+[node name="Reason" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 11
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Retry
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewRun" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "New Run
 "
 
 [node name="Quit" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 11
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Quit Game
 "
 
-[connection signal="pressed" from="VBoxContainer2/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer2/NewRun" to="." method="_on_new_run_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Quit" to="." method="_on_quit_pressed"]

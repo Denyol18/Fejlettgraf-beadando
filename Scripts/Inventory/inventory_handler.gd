@@ -48,6 +48,8 @@ func _ready() -> void:
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)
 	inventory_slots[2].fill_slot(starter)
+	inventory_slots[3].fill_slot(starter)
+	inventory_slots[4].fill_slot(starter)
 
 func pickup_card(item : ItemData):
 	var found_slot = false
@@ -158,7 +160,7 @@ func remove_from_slot(slot : InventorySlot):
 
 
 func is_game_over():
-	if GlobalVariables.cards_on_ground == 0:
+	if GlobalVariables.cards_on_ground == 0 && GlobalVariables.enemies.size() != 0:
 		var is_empty = true
 		
 		for slot in inventory_slots:
@@ -167,8 +169,9 @@ func is_game_over():
 				break
 				
 		if is_empty:
+			GlobalVariables.game_over_reason = "You ran out of cards!"
 			await get_tree().create_timer(3).timeout
-			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+			get_tree().change_scene_to_file("res://Scenes/Screens/game_over.tscn")
 
 
 func layer_changer(card):

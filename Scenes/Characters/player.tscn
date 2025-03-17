@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/Player/player.gd" id="1_ebmuu"]
 [ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="2_v0n5p"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/playerui.gd" id="2_yjhvj"]
-[ext_resource type="Script" path="res://Scripts/inventory_handler.gd" id="3_be81r"]
+[ext_resource type="Script" path="res://Scripts/Inventory/inventory_handler.gd" id="3_be81r"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/player_interaction.gd" id="3_mhxvx"]
 [ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="4_agihy"]
 [ext_resource type="Texture2D" uid="uid://dsj1xrs1ex3q4" path="res://Icons/icon.svg" id="5_ugvrm"]

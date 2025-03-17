@@ -64,7 +64,8 @@ func hit(damage, knockback):
 	else:
 		health = 0
 		print("player dead")
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		GlobalVariables.game_over_reason = "You've been killed by the enemy!"
+		get_tree().change_scene_to_file("res://Scenes/Screens/game_over.tscn")
 
 
 func bleeding(damage):
