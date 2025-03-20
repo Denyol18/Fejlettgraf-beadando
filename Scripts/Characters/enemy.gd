@@ -5,7 +5,7 @@ class_name Enemy
 var max_health = 50
 var speed_original = 5
 var attack_damage_original = 10
-var attack_speed_original = 1
+var attack_speed_original = 0.8
 
 var health = max_health
 var speed = speed_original
@@ -81,8 +81,8 @@ func slowdown(slow_value, slow_damage, slow_att_speed):
 		else:
 			attack_damage = attack_damage_original-slow_damage
 			
-		if attack_speed_original+slow_att_speed >= 1.9:
-			attack_speed = 1.9
+		if attack_speed_original+slow_att_speed >= 2.0:
+			attack_speed = 2.0
 		else:
 			attack_speed = attack_speed_original+slow_att_speed
 			

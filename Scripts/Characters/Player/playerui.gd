@@ -25,7 +25,11 @@ func _process(delta: float) -> void:
 		stopped = true
 		GlobalVariables.time_to_complete = stopwatch_label.text
 		await get_tree().create_timer(3).timeout
-		get_tree().change_scene_to_file("res://Scenes/Screens/level_completed.tscn")
+		
+		if GlobalVariables.level_name == GlobalVariables.FINAL_LEVEL_NAME:
+			get_tree().change_scene_to_file("res://Scenes/Screens/final_level_completed.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Scenes/Screens/level_completed.tscn")
 	
 	if stopped:
 		return

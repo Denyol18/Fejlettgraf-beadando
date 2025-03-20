@@ -1,13 +1,13 @@
 extends Control
-class_name GameOver
+class_name FinalLevelCompleted
 
 
-@export var game_over_reason_label : Label
+@export var info_label : Label
 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	game_over_reason_label.text = GlobalVariables.game_over_reason
+	info_label.text = "Final level completed! Time to complete: %s" % [GlobalVariables.time_to_complete]
 
 
 func _on_new_run_pressed() -> void:

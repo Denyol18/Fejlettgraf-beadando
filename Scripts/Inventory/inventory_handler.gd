@@ -5,6 +5,7 @@ class_name InventoryHandler
 @export var item_slot_count : int = 7
 @export var inventory_grid : HBoxContainer
 @export var inventory_slot_prefab : PackedScene = preload("res://Scenes/inventory_slot.tscn")
+@export var pause_menu = preload("res://Scripts/Screens/pause_menu.gd")
 
 var inventory_slots : Array[InventorySlot] = []
 
@@ -118,7 +119,7 @@ func _process(_delta: float) -> void:
 				break
 			index += 1
 
-	if Input.is_action_just_pressed("card_throw"):
+	if Input.is_action_just_pressed("card_throw") && !GlobalVariables.game_paused:
 		for i in inventory_slots:
 			if i.is_in_focus && i.is_filled:
 				instance = i.slot_data.thrown_item_model_prefab.instantiate()
@@ -131,6 +132,8 @@ func _process(_delta: float) -> void:
 					instance.slow_damage += slow_damage
 					instance.slow_att_speed += slow_att_speed
 					slow_value = 0
+					slow_damage = 0
+					slow_att_speed = 0
 					snail_pickedup = false
 				remove_from_slot(i)
 				print("card thrown")

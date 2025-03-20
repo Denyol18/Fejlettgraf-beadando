@@ -13,7 +13,7 @@ var cons_spawned = 0
 @onready var hit_rect = $PlayerHitUi/ColorRect
 
 @onready var card_spawn_points = $CardSpawnPoints
-@onready var cons_spawn_points =$ConsSpawnPoints
+@onready var cons_spawn_points = $ConsSpawnPoints
 
 var card_spawn_array
 var cons_spawn_array
@@ -30,6 +30,9 @@ var cons_instance
 
 var rng = RandomNumberGenerator.new()
 
+@onready var pause_menu = $PauseMenu
+var paused = false
+
 func _ready() -> void:
 	randomize()
 	
@@ -45,6 +48,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	GlobalVariables.enemies = get_tree().get_nodes_in_group("Enemy")
+	if Input.is_action_just_pressed("pause"):
+		on_pause()
+
+
+func on_pause():
+	if paused:
+		GlobalVariables.game_paused = false
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		GlobalVariables.game_paused = true
+		pause_menu.show()
+		Engine.time_scale = 0
+		
+	paused = !paused
 
 
 func spawn_cards():

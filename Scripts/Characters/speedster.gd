@@ -6,9 +6,9 @@ const BLEED_DAMAGE = 2
 
 
 func _ready():
-	max_health = 70
+	max_health = 50
 	speed_original = 7
-	attack_damage_original = 15
+	attack_damage_original = 10
 	attack_speed_original = 0.5
 	
 	health = max_health

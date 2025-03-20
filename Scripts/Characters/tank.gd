@@ -4,9 +4,9 @@ class_name Tank
 
 func _ready():
 	max_health = 100
-	speed_original = 3
+	speed_original = 4
 	attack_damage_original = 20
-	attack_speed_original = 1.4
+	attack_speed_original = 1.1
 	
 	health = max_health
 	speed = speed_original

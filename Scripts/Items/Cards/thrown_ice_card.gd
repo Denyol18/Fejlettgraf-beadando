@@ -22,8 +22,12 @@ func _process(delta: float) -> void:
 						obj.slowed = true
 						obj.slowdown(slow_value, slow_damage, slow_att_speed)
 						slow_value = 0
+						slow_damage = 0
+						slow_att_speed = 0
 					else:
 						slow_value = 0
+						slow_damage = 0
+						slow_att_speed = 0
 						print("slowing not applied")
 			
 			elif obj.frozen:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://ckkvp1fnfvbxi"]
+[gd_scene load_steps=33 format=3 uid="uid://ckkvp1fnfvbxi"]
 
 [ext_resource type="PackedScene" uid="uid://c87xpcvmjksrj" path="res://Scenes/Characters/player.tscn" id="1_f61ji"]
 [ext_resource type="Script" path="res://Scripts/Levels/level_1.gd" id="1_v2bp4"]
 [ext_resource type="Material" uid="uid://coe5vnirubssw" path="res://Materials/level_1.tres" id="3_6qoqe"]
+[ext_resource type="PackedScene" uid="uid://otbmnc703nvl" path="res://Scenes/Screens/pause_menu.tscn" id="3_8r02h"]
 [ext_resource type="Script" path="res://Scripts/Levels/spawn_point.gd" id="4_5uwfm"]
 [ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="4_e6qsj"]
 [ext_resource type="PackedScene" uid="uid://bueucldgu2a2o" path="res://Scenes/Characters/enemy.tscn" id="10_eg0dr"]
@@ -116,6 +117,9 @@ mouse_filter = 1
 color = Color(1, 0, 0, 0.27451)
 metadata/_edit_use_anchors_ = true
 
+[node name="PauseMenu" parent="." instance=ExtResource("3_8r02h")]
+visible = false
+
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("10_eg0dr")]
@@ -146,6 +150,10 @@ player_path = NodePath("../../Player")
 
 [node name="CardSpawner" type="Node3D" parent="CardSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 11.6157)
+script = ExtResource("4_5uwfm")
+
+[node name="CardSpawner50" type="Node3D" parent="CardSpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.99954, 1.8, -1.70926)
 script = ExtResource("4_5uwfm")
 
 [node name="CardSpawner3" type="Node3D" parent="CardSpawnPoints"]
@@ -288,10 +296,6 @@ script = ExtResource("4_5uwfm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1913, 1.8, 0.653432)
 script = ExtResource("4_5uwfm")
 
-[node name="CardSpawner50" type="Node3D" parent="CardSpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.99954, 1.8, -1.70926)
-script = ExtResource("4_5uwfm")
-
 [node name="CardSpawner46" type="Node3D" parent="CardSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96454, 1.8, -2.32228)
 script = ExtResource("4_5uwfm")
@@ -350,6 +354,10 @@ script = ExtResource("4_5uwfm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3387, 0.5, 18.114)
 script = ExtResource("4_5uwfm")
 
+[node name="ConsSpawner12" type="Node3D" parent="ConsSpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6716, 1.8, -18.7015)
+script = ExtResource("4_5uwfm")
+
 [node name="ConsSpawner7" type="Node3D" parent="ConsSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.499, 0.5, 21.1921)
 script = ExtResource("4_5uwfm")
@@ -360,10 +368,6 @@ script = ExtResource("4_5uwfm")
 
 [node name="ConsSpawner5" type="Node3D" parent="ConsSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3146, 1.8, -1.415)
-script = ExtResource("4_5uwfm")
-
-[node name="ConsSpawner12" type="Node3D" parent="ConsSpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6716, 1.8, -18.7015)
 script = ExtResource("4_5uwfm")
 
 [node name="ConsSpawner9" type="Node3D" parent="ConsSpawnPoints"]
