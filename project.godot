@@ -13,11 +13,14 @@ config_version=5
 config/name="Fejlettgraf-beadando"
 run/main_scene="res://Scenes/Screens/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Icons/icon.svg"
 
 [autoload]
 
 GlobalVariables="*res://Scripts/global.gd"
+
+[display]
+
+window/size/mode=3
 
 [input]
 

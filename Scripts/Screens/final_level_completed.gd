@@ -7,7 +7,7 @@ class_name FinalLevelCompleted
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	info_label.text = "Final level completed! Time to complete: %s" % [GlobalVariables.time_to_complete]
+	info_label.text = "Final level completed!\n Time to complete: %s" % [GlobalVariables.time_to_complete]
 
 
 func _on_new_run_pressed() -> void:

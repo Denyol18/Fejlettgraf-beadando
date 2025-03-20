@@ -44,7 +44,7 @@ func _ready() -> void:
 	starter.item_name = "Card"
 	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
 	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
-	starter.icon = preload("res://Icons/icon.svg")
+	starter.icon = preload("res://Icons/card.png")
 	
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)

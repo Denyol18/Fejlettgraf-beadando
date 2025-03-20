@@ -6,12 +6,12 @@
 [ext_resource type="Script" path="res://Scripts/Inventory/inventory_handler.gd" id="3_be81r"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/player_interaction.gd" id="3_mhxvx"]
 [ext_resource type="Script" path="res://Scripts/Items/item_data.gd" id="4_agihy"]
-[ext_resource type="Texture2D" uid="uid://dsj1xrs1ex3q4" path="res://Icons/icon.svg" id="5_ugvrm"]
-[ext_resource type="Texture2D" uid="uid://byqxpqo2l4db" path="res://Icons/fire.jpg" id="8_6ev33"]
+[ext_resource type="Texture2D" uid="uid://b2xdk1qer1hbx" path="res://Icons/card.png" id="6_ymwmx"]
 [ext_resource type="PackedScene" uid="uid://df4fbxivaxyu7" path="res://Scenes/Items/Cards/thrown_card.tscn" id="8_dntca"]
+[ext_resource type="Texture2D" uid="uid://b3wv7d2xwvu51" path="res://Icons/fire_card.png" id="9_vmp4i"]
 [ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Items/Cards/fire_card.tscn" id="9_wgvut"]
 [ext_resource type="PackedScene" uid="uid://cyoaqsbmcbq3p" path="res://Scenes/Items/Cards/thrown_fire_card.tscn" id="11_1i56d"]
-[ext_resource type="Texture2D" uid="uid://dsqsw01ae2hox" path="res://Icons/cold-face.png" id="12_o53oe"]
+[ext_resource type="Texture2D" uid="uid://0k7l80jnbv2w" path="res://Icons/ice_card.png" id="12_er1jr"]
 [ext_resource type="PackedScene" uid="uid://imgfsc22wb6y" path="res://Scenes/Items/Consumables/the_fist.tscn" id="12_oof52"]
 [ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="13_0rvnj"]
 [ext_resource type="PackedScene" uid="uid://cit341d8bpxnd" path="res://Scenes/Items/Consumables/the_snail.tscn" id="13_xr071"]
@@ -30,21 +30,21 @@ script = ExtResource("4_agihy")
 item_name = "Card"
 item_model_prefab = ExtResource("2_v0n5p")
 thrown_item_model_prefab = ExtResource("8_dntca")
-icon = ExtResource("5_ugvrm")
+icon = ExtResource("6_ymwmx")
 
 [sub_resource type="Resource" id="Resource_k1a7s"]
 script = ExtResource("4_agihy")
 item_name = "Fire Card"
 item_model_prefab = ExtResource("9_wgvut")
 thrown_item_model_prefab = ExtResource("11_1i56d")
-icon = ExtResource("8_6ev33")
+icon = ExtResource("9_vmp4i")
 
 [sub_resource type="Resource" id="Resource_txmua"]
 script = ExtResource("4_agihy")
 item_name = "Ice Card"
 item_model_prefab = ExtResource("13_0rvnj")
 thrown_item_model_prefab = ExtResource("14_j08m4")
-icon = ExtResource("12_o53oe")
+icon = ExtResource("12_er1jr")
 
 [sub_resource type="Resource" id="Resource_ci7mt"]
 script = ExtResource("4_agihy")

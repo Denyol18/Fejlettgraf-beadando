@@ -14,33 +14,42 @@ script = ExtResource("1_unyr3")
 [node name="Description" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0894097
-anchor_top = 0.333333
-anchor_right = 0.91059
-anchor_bottom = 0.575617
-offset_bottom = -3.05176e-05
+anchor_left = -0.0572917
+anchor_top = 0.105
+anchor_right = 1.03
+anchor_bottom = 0.813272
+offset_top = -0.0400009
+offset_right = 0.439941
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 7
 theme_override_font_sizes/font_size = 20
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Phasellus aliquam tellus non sem vehicula, at efficitur tortor tincidunt.
-Aliquam viverra justo ligula, quis commodo risus vehicula a. 
-Etiam auctor turpis velit, mattis imperdiet risus bibendum id. Praesent sed convallis mauris. 
-Duis metus leo, congue ac est a, blandit commodo tortor."
+text = "Card Sharp is a 3D first person shooter game 
+in which you must complete 5 different levels to successfully complete the game.
+Each successive level is larger in size and has more enemies.
+Your weapons are cards that could have different properties.
+Each level has some randomly generated cards and upgrades that you can pick up and use against 
+your enemies. You can only hold a maximum of seven cards at a time and you 
+always start with five cards at the start of a level.
+
+Have fun!
+
+Controls:
+Move forward: W, Move backwards: S, Move left: A, Move right: D, Rotate: Mouse, Jump: Space, 
+Throw card: Left mouse button, Drop card: Right mouse button, 
+Inventory slot moving: Mouse wheel up/down, Pause game: Escape"
 horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.374132
-anchor_top = 0.617284
+anchor_top = 0.848765
 anchor_right = 0.625868
-anchor_bottom = 0.709877
+anchor_bottom = 0.941358
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="GoBack" type="Button" parent="HBoxContainer"]
