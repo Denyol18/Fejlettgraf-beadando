@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2nqk0fjdlqbi"]
+
+[ext_resource type="Material" uid="uid://bgbpr8mbtkqjt" path="res://Materials/healing_card.tres" id="1_0c4r2"]
+[ext_resource type="Script" path="res://Scripts/Items/Cards/healing_card.gd" id="1_6b62q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vu1m"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_28r3r"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="HealingCard" type="RigidBody3D"]
+script = ExtResource("1_6b62q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = SubResource("BoxMesh_2vu1m")
+surface_material_override/0 = ExtResource("1_0c4r2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.8, 0, 0, 0, 0.02, 0, -0.1, 0)
+shape = SubResource("ConvexPolygonShape3D_28r3r")

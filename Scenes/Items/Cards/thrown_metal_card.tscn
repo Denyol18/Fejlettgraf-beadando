@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmlv8bamq2hg2"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Cards/thrown_metal_card.gd" id="1_oirxe"]
+[ext_resource type="Material" uid="uid://c8ibmlpy3tnf7" path="res://Materials/metal_card.tres" id="2_dn6lm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ve7jw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s3vor"]
+
+[node name="ThrownMetalCard" type="Node3D"]
+script = ExtResource("1_oirxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+mesh = SubResource("BoxMesh_ve7jw")
+surface_material_override/0 = ExtResource("2_dn6lm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+visible = false
+shape = SubResource("BoxShape3D_s3vor")
+target_position = Vector3(0, 0, 0)
+collision_mask = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

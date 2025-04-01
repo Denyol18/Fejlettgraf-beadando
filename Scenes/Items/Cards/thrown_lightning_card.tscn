@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuirtaxlvn20d"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Cards/thrown_lightning_card.gd" id="1_q30v0"]
+[ext_resource type="Material" uid="uid://bdyrtqx6l3qef" path="res://Materials/lightning_card.tres" id="2_y281s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oljdx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukcit"]
+
+[node name="ThrownLightningCard" type="Node3D"]
+script = ExtResource("1_q30v0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+mesh = SubResource("BoxMesh_oljdx")
+surface_material_override/0 = ExtResource("2_y281s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -2.62268e-08, -0.02, 0, 0.6, -8.74228e-10, 0, 0, 0)
+visible = false
+shape = SubResource("BoxShape3D_ukcit")
+target_position = Vector3(0, 0, 0)
+collision_mask = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

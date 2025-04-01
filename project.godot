@@ -20,7 +20,8 @@ GlobalVariables="*res://Scripts/global.gd"
 
 [display]
 
-window/size/mode=3
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [input]
 

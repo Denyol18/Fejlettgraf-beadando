@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://xi6gaknl4fq0"]
+
+[ext_resource type="Material" uid="uid://bdyrtqx6l3qef" path="res://Materials/lightning_card.tres" id="1_b4e6n"]
+[ext_resource type="Script" path="res://Scripts/Items/Cards/lightning_card.gd" id="1_qjqes"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m536l"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s12mm"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="LightningCard" type="RigidBody3D"]
+script = ExtResource("1_qjqes")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = SubResource("BoxMesh_m536l")
+surface_material_override/0 = ExtResource("1_b4e6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.8, 0, 0, 0, 0.02, 0, -0.1, 0)
+shape = SubResource("ConvexPolygonShape3D_s12mm")

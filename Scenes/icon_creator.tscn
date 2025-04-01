@@ -1,51 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://c31hjh4ob7tyj"]
+[gd_scene load_steps=3 format=3 uid="uid://c31hjh4ob7tyj"]
 
 [ext_resource type="Script" path="res://Scripts/icon_creator.gd" id="1_q1vki"]
-[ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="2_5uncl"]
-[ext_resource type="PackedScene" uid="uid://w6yapaq6fr6w" path="res://Scenes/Items/Cards/fire_card.tscn" id="3_sc40b"]
-[ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="4_5yyru"]
+[ext_resource type="PackedScene" uid="uid://xi6gaknl4fq0" path="res://Scenes/Items/Cards/lightning_card.tscn" id="2_47oib"]
 
 [node name="IconCreator" type="Node"]
 script = ExtResource("1_q1vki")
 
-[node name="card" type="SubViewport" parent="."]
+[node name="lightning_card" type="SubViewport" parent="."]
 own_world_3d = true
 transparent_bg = true
 msaa_3d = 3
 size = Vector2i(300, 300)
 render_target_update_mode = 4
 
-[node name="Card" parent="card" instance=ExtResource("2_5uncl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="card"]
+[node name="Camera3D" type="Camera3D" parent="lightning_card"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45)
 current = true
 
-[node name="fire_card" type="SubViewport" parent="."]
-own_world_3d = true
-transparent_bg = true
-msaa_3d = 3
-size = Vector2i(300, 300)
-render_target_update_mode = 4
-
-[node name="Fire Card" parent="fire_card" instance=ExtResource("3_sc40b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.4573, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="fire_card"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.457, 0, 0.45)
-current = true
-
-[node name="ice_card" type="SubViewport" parent="."]
-own_world_3d = true
-transparent_bg = true
-msaa_3d = 3
-size = Vector2i(300, 300)
-render_target_update_mode = 4
-
-[node name="IceCard" parent="ice_card" instance=ExtResource("4_5yyru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.01215, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="ice_card"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.012, 0, 0.45)
-current = true
+[node name="LightningCard" parent="lightning_card" instance=ExtResource("2_47oib")]

@@ -75,3 +75,14 @@ func bleeding(damage):
 		hit(damage, Vector3.ZERO)
 		
 	is_bleeding = false
+
+
+func heal(value):
+	if health == MAX_HEALTH:
+		print("No healing, already at max hp")
+	elif health+value >= MAX_HEALTH:
+		health = MAX_HEALTH
+		print("Healed to max!")
+	else:
+		health += value
+		print("Healing succesful")

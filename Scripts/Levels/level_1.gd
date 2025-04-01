@@ -21,6 +21,9 @@ var cons_spawn_array
 var card = load("res://Scenes/Items/Cards/card.tscn")
 var fire_card = load("res://Scenes/Items/Cards/fire_card.tscn")
 var ice_card = load("res://Scenes/Items/Cards/ice_card.tscn")
+var healing_card = load("res://Scenes/Items/Cards/healing_card.tscn")
+var metal_card = load("res://Scenes/Items/Cards/metal_card.tscn")
+var lightning_card = load("res://Scenes/Items/Cards/lightning_card.tscn")
 
 var the_fist = load("res://Scenes/Items/Consumables/the_fist.tscn")
 var the_snail = load("res://Scenes/Items/Consumables/the_snail.tscn")
@@ -77,6 +80,12 @@ func spawn_cards():
 				card_instance = ice_card.instantiate()
 			elif random_number == 2:
 				card_instance = fire_card.instantiate()
+			elif random_number == 3:
+				card_instance = healing_card.instantiate()
+			elif random_number == 4:
+				card_instance = metal_card.instantiate()
+			elif random_number == 5:
+				card_instance = lightning_card.instantiate()
 			else:
 				card_instance = card.instantiate()
 				

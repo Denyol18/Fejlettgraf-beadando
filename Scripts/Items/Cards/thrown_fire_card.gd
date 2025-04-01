@@ -3,6 +3,7 @@ class_name ThrownFireCard
 
 const FIRE_DAMAGE = 5
 
+
 func _process(delta: float) -> void:
 	position += transform.basis * Vector3(0, 0, -SPEED) * delta
 	if shape.is_colliding():
@@ -17,7 +18,7 @@ func _process(delta: float) -> void:
 				obj.burning(FIRE_DAMAGE)
 				
 				if slow_value != 0:
-					if !obj.slowed && !obj.frozen:
+					if !obj.slowed && !obj.frozen && !obj.shocked:
 						obj.slowed = true
 						obj.slowdown(slow_value, slow_damage, slow_att_speed)
 						slow_value = 0

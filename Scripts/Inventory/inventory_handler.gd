@@ -41,10 +41,10 @@ func _ready() -> void:
 	inventory_slots[0].is_in_focus = true
 	
 	var starter : ItemData = ItemData.new()
-	starter.item_name = "Card"
-	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
-	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
-	starter.icon = preload("res://Icons/card.png")
+	starter.item_name = "Lightning Card"
+	starter.item_model_prefab = preload("res://Scenes/Items/Cards/lightning_card.tscn")
+	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_lightning_card.tscn")
+	starter.icon = preload("res://Icons/lightning_card.png")
 	
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c87xpcvmjksrj"]
+[gd_scene load_steps=38 format=3 uid="uid://c87xpcvmjksrj"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/player.gd" id="1_ebmuu"]
 [ext_resource type="PackedScene" uid="uid://b6xr6kww5ndcm" path="res://Scenes/Items/Cards/card.tscn" id="2_v0n5p"]
@@ -16,6 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://do7rg0qvttuw5" path="res://Scenes/Items/Cards/ice_card.tscn" id="13_0rvnj"]
 [ext_resource type="PackedScene" uid="uid://cit341d8bpxnd" path="res://Scenes/Items/Consumables/the_snail.tscn" id="13_xr071"]
 [ext_resource type="PackedScene" uid="uid://bjkomqmwn8sb7" path="res://Scenes/Items/Cards/thrown_ice_card.tscn" id="14_j08m4"]
+[ext_resource type="Texture2D" uid="uid://dt7osuvlmq2m3" path="res://Icons/healing_card.png" id="15_c1gof"]
+[ext_resource type="PackedScene" uid="uid://d2nqk0fjdlqbi" path="res://Scenes/Items/Cards/healing_card.tscn" id="17_k5xvu"]
+[ext_resource type="Texture2D" uid="uid://ct1gleu8rixp5" path="res://Icons/metal_card.png" id="18_1ys0x"]
+[ext_resource type="PackedScene" uid="uid://c53hawvcyd08c" path="res://Scenes/Items/Cards/thrown_healing_card.tscn" id="18_jx3ei"]
+[ext_resource type="PackedScene" uid="uid://n6t00bfhgv11" path="res://Scenes/Items/Cards/metal_card.tscn" id="18_pym3c"]
+[ext_resource type="PackedScene" uid="uid://bmlv8bamq2hg2" path="res://Scenes/Items/Cards/thrown_metal_card.tscn" id="19_y47n6"]
+[ext_resource type="Texture2D" uid="uid://co6xv7mjkgv7v" path="res://Icons/lightning_card.png" id="21_06vhm"]
+[ext_resource type="PackedScene" uid="uid://xi6gaknl4fq0" path="res://Scenes/Items/Cards/lightning_card.tscn" id="22_sil24"]
+[ext_resource type="PackedScene" uid="uid://cuirtaxlvn20d" path="res://Scenes/Items/Cards/thrown_lightning_card.tscn" id="23_gbt44"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_n0dqk"]
 
@@ -45,6 +54,27 @@ item_name = "Ice Card"
 item_model_prefab = ExtResource("13_0rvnj")
 thrown_item_model_prefab = ExtResource("14_j08m4")
 icon = ExtResource("12_er1jr")
+
+[sub_resource type="Resource" id="Resource_ltghq"]
+script = ExtResource("4_agihy")
+item_name = "Healing Card"
+item_model_prefab = ExtResource("17_k5xvu")
+thrown_item_model_prefab = ExtResource("18_jx3ei")
+icon = ExtResource("15_c1gof")
+
+[sub_resource type="Resource" id="Resource_qrklw"]
+script = ExtResource("4_agihy")
+item_name = "Metal Card"
+item_model_prefab = ExtResource("18_pym3c")
+thrown_item_model_prefab = ExtResource("19_y47n6")
+icon = ExtResource("18_1ys0x")
+
+[sub_resource type="Resource" id="Resource_il358"]
+script = ExtResource("4_agihy")
+item_name = "Lightning Card"
+item_model_prefab = ExtResource("22_sil24")
+thrown_item_model_prefab = ExtResource("23_gbt44")
+icon = ExtResource("21_06vhm")
 
 [sub_resource type="Resource" id="Resource_ci7mt"]
 script = ExtResource("4_agihy")
@@ -240,7 +270,7 @@ alignment = 1
 [node name="PickupArea" type="Area3D" parent="."]
 visible = false
 script = ExtResource("3_mhxvx")
-item_types = Array[ExtResource("4_agihy")]([SubResource("Resource_crx4w"), SubResource("Resource_k1a7s"), SubResource("Resource_txmua"), SubResource("Resource_ci7mt"), SubResource("Resource_m4268")])
+item_types = Array[ExtResource("4_agihy")]([SubResource("Resource_crx4w"), SubResource("Resource_k1a7s"), SubResource("Resource_txmua"), SubResource("Resource_ltghq"), SubResource("Resource_qrklw"), SubResource("Resource_il358"), SubResource("Resource_ci7mt"), SubResource("Resource_m4268")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988614, 0)

@@ -15,6 +15,7 @@ var attack_speed = attack_speed_original
 var on_fire = false
 var slowed = false
 var frozen = false
+var shocked = false
 
 @export var player_path : NodePath
 var player = null
@@ -34,12 +35,12 @@ func _process(delta: float) -> void:
 	velocity = Vector3.ZERO
 	
 	if sees_player:
-		if !player_in_range && !frozen:
+		if !player_in_range && !frozen && !shocked:
 			nav_agent.set_target_position(player.global_transform.origin)
 			next_nav_point = nav_agent.get_next_path_position()
 			velocity = (next_nav_point - global_transform.origin).normalized() * speed
 			rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
-		elif !frozen:
+		elif !frozen && !shocked:
 			look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
 		
 		move_and_slide()
@@ -68,7 +69,7 @@ func burning(damage):
 
 func slowdown(slow_value, slow_damage, slow_att_speed):
 	for n in 3:
-		if frozen:
+		if frozen || shocked:
 			return
 			
 		if speed_original-slow_value <= 1:
@@ -111,6 +112,26 @@ func freeze():
 	attack_damage = attack_damage_original
 	attack_speed = attack_speed_original
 	frozen = false
+	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
+
+
+func shock(damage):
+	for n in 2:
+		if !shocked:
+			return
+
+		speed = 0
+		attack_damage = 0
+		attack_speed = 0
+		print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
+		print("SHOCKED!!!")
+		enemy_hit(damage)
+		await get_tree().create_timer(1).timeout
+		
+	speed = speed_original
+	attack_damage = attack_damage_original
+	attack_speed = attack_speed_original
+	shocked = false
 	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 
 
