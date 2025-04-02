@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 		var obj = shape.get_collider(0)
 		
 		if obj.is_in_group("Enemy"):
-			obj.enemy_hit(damage)
+			obj.enemy_hit(damage, false)
 			get_tree().call_group("Player", "heal", HEAL_VALUE)
 			
 			if slow_value != 0:

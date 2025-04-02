@@ -41,10 +41,10 @@ func _ready() -> void:
 	inventory_slots[0].is_in_focus = true
 	
 	var starter : ItemData = ItemData.new()
-	starter.item_name = "Lightning Card"
-	starter.item_model_prefab = preload("res://Scenes/Items/Cards/lightning_card.tscn")
-	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_lightning_card.tscn")
-	starter.icon = preload("res://Icons/lightning_card.png")
+	starter.item_name = "Metal Card"
+	starter.item_model_prefab = preload("res://Scenes/Items/Cards/metal_card.tscn")
+	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_metal_card.tscn")
+	starter.icon = preload("res://Icons/metal_card.png")
 	
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)
@@ -88,6 +88,25 @@ func pickup_consumable(item : ItemData):
 			slow_damage += SNAIL_ATTACK_DAMAGE
 			slow_att_speed += SNAIL_ATTACK_SPEED
 			print("Next thrown card slows down the enemy!")
+		"The Printer":
+			var helper = 0
+			for slot in inventory_slots:
+				if slot.is_in_focus && slot.is_filled:
+					for slot2 in inventory_slots:
+						if (!slot2.is_filled):
+							slot2.fill_slot(slot.slot_data)
+							helper += 1
+							if helper == 2:
+								print("Created two copies of the card currently in your hand!")
+								break
+					if helper == 1:
+						print("Created only one copy of the card currently in your hand!")
+					elif helper == 0:
+						print("No free space to create copies of the card currently in your hand!")
+					break
+				elif slot.is_in_focus && !slot.is_filled:
+					print("No card in hand, no copies were created!")
+					break
 
 
 func _process(_delta: float) -> void:

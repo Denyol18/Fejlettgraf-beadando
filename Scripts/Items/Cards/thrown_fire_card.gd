@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 			
 			# fire card specific code begin
 			if !obj.on_fire && !obj.frozen:
-				obj.enemy_hit(damage)
+				obj.enemy_hit(damage, false)
 				obj.on_fire = true
 				obj.burning(FIRE_DAMAGE)
 				
@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 						print("slowing not applied")
 			
 			elif obj.on_fire:
-				obj.enemy_hit(damage)
+				obj.enemy_hit(damage, false)
 				print("only damage, no burn")
 			
 			elif obj.frozen:

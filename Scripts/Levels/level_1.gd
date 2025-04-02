@@ -27,6 +27,7 @@ var lightning_card = load("res://Scenes/Items/Cards/lightning_card.tscn")
 
 var the_fist = load("res://Scenes/Items/Consumables/the_fist.tscn")
 var the_snail = load("res://Scenes/Items/Consumables/the_snail.tscn")
+var the_printer = load("res://Scenes/Items/Consumables/the_printer.tscn")
 
 var card_instance
 var cons_instance
@@ -101,12 +102,14 @@ func spawn_cons():
 		if !cons_spawner.is_filled:
 			
 			cons_spawner.is_filled = true
-			var random_number = rng.randi_range(0, 10)
+			var random_number = rng.randi_range(1, 11)
 		
-			if 0 <= random_number && random_number <= 5: 
+			if 0 <= random_number && random_number <= 3: 
 				cons_instance = the_fist.instantiate()
-			else:
+			elif 4 <= random_number && random_number <= 7:
 				cons_instance = the_snail.instantiate()
+			else:
+				cons_instance = the_printer.instantiate()
 			
 			cons_instance.position = cons_spawner.global_position
 			$".".add_child(cons_instance)

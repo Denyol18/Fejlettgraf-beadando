@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		move_and_slide()
 
 
-func enemy_hit(damage):
+func enemy_hit(damage, is_metal):
 	if damage < health:
 		health -= damage
 		print("enemy hp: %s" % health)
@@ -62,7 +62,7 @@ func burning(damage):
 	for n in 3:
 		await get_tree().create_timer(1).timeout
 		print("ON FIRE!!!")
-		enemy_hit(damage)
+		enemy_hit(damage, false)
 		
 	on_fire = false
 
@@ -125,7 +125,7 @@ func shock(damage):
 		attack_speed = 0
 		print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 		print("SHOCKED!!!")
-		enemy_hit(damage)
+		enemy_hit(damage, false)
 		await get_tree().create_timer(1).timeout
 		
 	speed = speed_original

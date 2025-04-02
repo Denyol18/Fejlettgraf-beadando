@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 			
 			# lightning card specific code begin
 			if !obj.shocked:
-				obj.enemy_hit(damage)
+				obj.enemy_hit(damage, false)
 				obj.shocked = true
 				obj.shock(SHOCK_DAMAGE)
 				
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 						print("slowing not applied")
 			
 			elif obj.shocked:
-				obj.enemy_hit(damage)
+				obj.enemy_hit(damage, false)
 				print("only damage, no shocking")
 			# lightning card specific code begin
 		else:

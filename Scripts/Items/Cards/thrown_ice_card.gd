@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 			
 			# ice card specific code begin
 			if !obj.frozen && !obj.on_fire:
-				obj.enemy_hit(damage+ICE_CARD_PLUS_DAMAGE)
+				obj.enemy_hit(damage+ICE_CARD_PLUS_DAMAGE, false)
 				obj.frozen = true
 				obj.freeze()
 				
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 						print("slowing not applied")
 			
 			elif obj.frozen:
-				obj.enemy_hit(damage)
+				obj.enemy_hit(damage, false)
 				print("only damage, no freeze")
 				
 			else:

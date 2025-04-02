@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		var obj = shape.get_collider(0)
 		
 		if obj.is_in_group("Enemy"):
-			obj.enemy_hit(damage)
+			obj.enemy_hit(damage, false)
 			
 			if slow_value != 0:
 				if !obj.slowed && !obj.frozen && !obj.shocked:
