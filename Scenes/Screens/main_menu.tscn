@@ -68,4 +68,6 @@ text = "Quit Game
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Description" to="." method="_on_description_pressed"]
+[connection signal="pressed" from="VBoxContainer/Achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="VBoxContainer/Collection" to="." method="_on_collection_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

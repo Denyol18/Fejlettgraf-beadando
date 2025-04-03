@@ -14,10 +14,12 @@ func _ready():
 	attack_speed = attack_speed_original
 	
 	player = get_node(player_path)
-	
-	
+
+
 func _on_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
+		if !sees_player:
+			sees_player = true
 		player_in_range = true
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout

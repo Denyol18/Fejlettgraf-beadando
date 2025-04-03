@@ -10,5 +10,13 @@ func _on_description_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Screens/game_description.tscn")
 
 
+func _on_achievements_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Screens/achievements.tscn")
+
+
+func _on_collection_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Screens/collection.tscn")
+
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()

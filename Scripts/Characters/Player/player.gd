@@ -5,6 +5,7 @@ class_name Player
 const JUMP_VELOCITY = 4.8
 const MAX_HEALTH = 50
 const HIT_STAGGER = 30
+const ORIGINAL_SPEED = 8.0
 
 var health = MAX_HEALTH
 var speed = 8.0
@@ -86,3 +87,7 @@ func heal(value):
 	else:
 		health += value
 		print("Healing succesful")
+
+
+func change_speed(value):
+	speed = value

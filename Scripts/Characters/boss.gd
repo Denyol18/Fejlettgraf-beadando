@@ -1,15 +1,12 @@
 extends Enemy
-class_name Speedster
-
-
-const BLEED_DAMAGE = 2
+class_name Boss
 
 
 func _ready():
-	max_health = 50
-	speed_original = 7
-	attack_damage_original = 10
-	attack_speed_original = 0.5
+	max_health = 100
+	speed_original = 6
+	attack_damage_original = 30
+	attack_speed_original = 0.6
 	
 	health = max_health
 	speed = speed_original
@@ -27,7 +24,5 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout
 			if player_in_range && attack_damage != 0:
-				get_tree().call_group("Player", "hit", attack_damage, Vector3.ZERO)
-				if !body.is_bleeding:
-					body.is_bleeding = true
-					get_tree().call_group("Player", "bleeding", BLEED_DAMAGE)
+				var dir = global_position.direction_to(player.global_position)
+				get_tree().call_group("Player", "hit", attack_damage, dir)

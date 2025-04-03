@@ -8,6 +8,7 @@ class_name InventoryHandler
 @export var pause_menu = preload("res://Scripts/Screens/pause_menu.gd")
 
 var inventory_slots : Array[InventorySlot] = []
+var current_slot : InventorySlot
 
 var instance
 var player_rotation
@@ -35,16 +36,18 @@ func _ready() -> void:
 		var slot = inventory_slot_prefab.instantiate() as InventorySlot
 		inventory_grid.add_child(slot)
 		slot.inventory_slot_id = 1
+		slot.slot_data = null
 		inventory_slots.append(slot)
 	
 	inventory_slots[0].grab_focus()
 	inventory_slots[0].is_in_focus = true
+	current_slot = inventory_slots[0]
 	
 	var starter : ItemData = ItemData.new()
-	starter.item_name = "Metal Card"
-	starter.item_model_prefab = preload("res://Scenes/Items/Cards/metal_card.tscn")
-	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_metal_card.tscn")
-	starter.icon = preload("res://Icons/metal_card.png")
+	starter.item_name = "Card"
+	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
+	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
+	starter.icon = preload("res://Icons/card.png")
 	
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)
@@ -68,7 +71,6 @@ func pickup_card(item : ItemData):
 		instance.position = marker.global_position
 		instance.transform.basis = marker.global_transform.basis
 		get_parent().add_child(instance)
-		GlobalVariables.cards_on_ground += 1
 		player_rotation = marker.global_transform.basis.z.normalized()
 		instance.apply_central_impulse(player_rotation * -5 + Vector3(0, 1.5, 0))
 		print("cant pickup!")
@@ -112,6 +114,14 @@ func pickup_consumable(item : ItemData):
 func _process(_delta: float) -> void:
 	is_game_over()
 	
+	if current_slot.slot_data != null:
+		if current_slot.slot_data.item_name == "Lightning Card":
+			get_tree().call_group("Player", "change_speed", 11.0)
+		else:
+			get_tree().call_group("Player", "change_speed", player_body.ORIGINAL_SPEED)
+	else:
+		get_tree().call_group("Player", "change_speed", player_body.ORIGINAL_SPEED)
+	
 	if Input.is_action_just_released("slot_up"):
 		var index = 0
 		for slot in inventory_slots:
@@ -121,10 +131,12 @@ func _process(_delta: float) -> void:
 					slot.is_in_focus = false
 					inventory_slots[0].grab_focus()
 					inventory_slots[0].is_in_focus = true
+					current_slot = inventory_slots[0]
 					break
 				slot.is_in_focus = false
 				inventory_slots[index+1].grab_focus()
 				inventory_slots[index+1].is_in_focus = true
+				current_slot = inventory_slots[index+1]
 				break
 			index += 1
 
@@ -135,6 +147,7 @@ func _process(_delta: float) -> void:
 				i.is_in_focus = false
 				inventory_slots[index-1].grab_focus()
 				inventory_slots[index-1].is_in_focus = true
+				current_slot = inventory_slots[index-1]
 				break
 			index += 1
 
@@ -182,6 +195,7 @@ func remove_from_slot(slot : InventorySlot):
 
 
 func is_game_over():
+	#print(GlobalVariables.cards_on_ground)
 	if GlobalVariables.cards_on_ground == 0 && GlobalVariables.enemies.size() != 0:
 		var is_empty = true
 		
