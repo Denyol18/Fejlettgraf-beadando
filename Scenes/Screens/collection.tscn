@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3n5tyf630wqi"]
+[gd_scene load_steps=9 format=3 uid="uid://b3n5tyf630wqi"]
 
 [ext_resource type="Script" path="res://Scripts/Screens/collection.gd" id="1_bihci"]
+[ext_resource type="Texture2D" uid="uid://b2xdk1qer1hbx" path="res://Icons/card.png" id="2_ijpmf"]
+[ext_resource type="Texture2D" uid="uid://b3wv7d2xwvu51" path="res://Icons/fire_card.png" id="3_601fh"]
+[ext_resource type="Theme" uid="uid://b7lgrjdw1fs1s" path="res://Materials/collection.tres" id="3_oykaw"]
+[ext_resource type="Texture2D" uid="uid://0k7l80jnbv2w" path="res://Icons/ice_card.png" id="4_xwuah"]
+[ext_resource type="Texture2D" uid="uid://dt7osuvlmq2m3" path="res://Icons/healing_card.png" id="5_oj4pf"]
+[ext_resource type="Texture2D" uid="uid://ct1gleu8rixp5" path="res://Icons/metal_card.png" id="6_qvwma"]
+[ext_resource type="Texture2D" uid="uid://co6xv7mjkgv7v" path="res://Icons/lightning_card.png" id="7_3qgbp"]
 
 [node name="Collection" type="Control"]
 layout_mode = 3
@@ -11,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bihci")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.374132
@@ -23,10 +30,221 @@ grow_vertical = 0
 theme_override_constants/separation = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="GoBack" type="Button" parent="HBoxContainer"]
+[node name="GoBack" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Go Back"
 
-[connection signal="pressed" from="HBoxContainer/GoBack" to="." method="_on_go_back_pressed"]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.179688
+anchor_top = 0.219444
+anchor_right = 0.820313
+anchor_bottom = 0.791667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Card"]
+layout_mode = 2
+texture = ExtResource("2_ijpmf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Card"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Card/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Card/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Card/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 10 damage on hit"
+
+[node name="FireCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/FireCard"]
+layout_mode = 2
+texture = ExtResource("3_601fh")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/FireCard"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Fire Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 10 damage on hit and sets the enemy
+on fire for a short amount of time, dealing
+5 damage per second."
+
+[node name="IceCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/IceCard"]
+layout_mode = 2
+texture = ExtResource("4_xwuah")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/IceCard"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Ice Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 10 damage on hit with 5 bonus damage 
+and freezes the enemy 
+for a short amount of time"
+
+[node name="Healing Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Healing Card"]
+layout_mode = 2
+texture = ExtResource("5_oj4pf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Healing Card"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Healing Card/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Healing Card/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Healing Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Healing Card/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 10 damage on hit and heals the
+player if they are missing any health points"
+
+[node name="MetalCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/MetalCard"]
+layout_mode = 2
+texture = ExtResource("6_qvwma")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/MetalCard"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Metal Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 25 damage on hit and ignores
+armor"
+
+[node name="LightningCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/LightningCard"]
+layout_mode = 2
+texture = ExtResource("7_3qgbp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/LightningCard"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Lightning Card:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Deals 10 damage on hit and shocks the 
+enemy for a short amount of time
+While shocked, enemies can't move and
+suffer 5 damage per second
+Holding this card gives the player movement
+speed boost"
+
+[connection signal="pressed" from="VBoxContainer/GoBack" to="." method="_on_go_back_pressed"]
