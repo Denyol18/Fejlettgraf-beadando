@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c31hjh4ob7tyj"]
+[gd_scene load_steps=2 format=3 uid="uid://c31hjh4ob7tyj"]
 
 [ext_resource type="Script" path="res://Scripts/icon_creator.gd" id="1_q1vki"]
-[ext_resource type="PackedScene" uid="uid://xi6gaknl4fq0" path="res://Scenes/Items/Cards/lightning_card.tscn" id="2_47oib"]
 
 [node name="IconCreator" type="Node"]
 script = ExtResource("1_q1vki")
 
-[node name="lightning_card" type="SubViewport" parent="."]
-own_world_3d = true
+[node name="boss" type="SubViewport" parent="."]
 transparent_bg = true
 msaa_3d = 3
 size = Vector2i(300, 300)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="lightning_card"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45)
+[node name="Camera3D" type="Camera3D" parent="boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000267297, 0.276577, 1.71476)
 current = true
+fov = 57.2452
 
-[node name="LightningCard" parent="lightning_card" instance=ExtResource("2_47oib")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="boss"]
+visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3n5tyf630wqi"]
+[gd_scene load_steps=17 format=3 uid="uid://b3n5tyf630wqi"]
 
 [ext_resource type="Script" path="res://Scripts/Screens/collection.gd" id="1_bihci"]
 [ext_resource type="Texture2D" uid="uid://b2xdk1qer1hbx" path="res://Icons/card.png" id="2_ijpmf"]
@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://dt7osuvlmq2m3" path="res://Icons/healing_card.png" id="5_oj4pf"]
 [ext_resource type="Texture2D" uid="uid://ct1gleu8rixp5" path="res://Icons/metal_card.png" id="6_qvwma"]
 [ext_resource type="Texture2D" uid="uid://co6xv7mjkgv7v" path="res://Icons/lightning_card.png" id="7_3qgbp"]
+[ext_resource type="Texture2D" uid="uid://b7pn710etqp7y" path="res://Icons/the_fist.png" id="9_knx4d"]
+[ext_resource type="Texture2D" uid="uid://cyu50r30qyutc" path="res://Icons/the_snail.png" id="10_v6moc"]
+[ext_resource type="Texture2D" uid="uid://bgm78r8vyjaar" path="res://Icons/the_printer.png" id="11_mix8p"]
+[ext_resource type="Texture2D" uid="uid://dw7yy0ju087bg" path="res://Icons/enemy.png" id="12_nlu7b"]
+[ext_resource type="Texture2D" uid="uid://d0kpn57vd2uud" path="res://Icons/speedster.png" id="13_b6psw"]
+[ext_resource type="Texture2D" uid="uid://dpmsodd01mxog" path="res://Icons/tank.png" id="14_xirrx"]
+[ext_resource type="Texture2D" uid="uid://ci56rekyxqweq" path="res://Icons/armored_enemy.png" id="15_r2ytk"]
+[ext_resource type="Texture2D" uid="uid://bbmjw6ea5tgrk" path="res://Icons/boss.png" id="16_6huin"]
 
 [node name="Collection" type="Control"]
 layout_mode = 3
@@ -18,24 +26,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bihci")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.374132
-anchor_top = 0.848765
-anchor_right = 0.625868
-anchor_bottom = 0.941358
-grow_horizontal = 2
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(410, 1)
+layout_mode = 0
+anchor_left = 0.266406
+anchor_top = 0.0972222
+anchor_right = 0.749219
+anchor_bottom = 0.190278
 theme_override_constants/separation = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="GoBack" type="Button" parent="VBoxContainer"]
+[node name="Cards" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Go Back"
+text = "Cards"
+
+[node name="Consumables" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Consumables"
+
+[node name="Enemies" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Enemies"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -53,7 +70,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 5
+theme_override_constants/separation = 50
 
 [node name="Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -84,71 +101,82 @@ text = "Card:"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Deals 10 damage on hit"
+text = "Deals 10 damage on hit."
 
-[node name="FireCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Fire Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/FireCard"]
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Fire Card"]
 layout_mode = 2
 texture = ExtResource("3_601fh")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/FireCard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Fire Card"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_oykaw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Fire Card/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Fire Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "Fire Card:"
 
-[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/FireCard/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Fire Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Deals 10 damage on hit and sets the enemy
 on fire for a short amount of time, dealing
-5 damage per second."
+5 damage per second.
+Can't set an enemy on fire if they are already on fire.
+If the enemy is frozen and is 
+hit with a fire card, the freezing effect ends before 
+it's supposed to
+and the fire card deals no damage."
 
-[node name="IceCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Ice Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/IceCard"]
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Ice Card"]
 layout_mode = 2
 texture = ExtResource("4_xwuah")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/IceCard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Ice Card"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_oykaw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Ice Card/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Ice Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "Ice Card:"
 
-[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/IceCard/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Ice Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Deals 10 damage on hit with 5 bonus damage 
 and freezes the enemy 
-for a short amount of time"
+for a short amount of time.
+Can't freeze an enemy that is
+already frozen, will deal no bonus
+damage in that instance.
+If the enemy is on fire, the ice card
+will not freeze the enemy 
+and will not deal any damage."
 
 [node name="Healing Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -179,72 +207,400 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Deals 10 damage on hit and heals the
-player if they are missing any health points"
+player if they are missing any health points.
+One card can only give 
+a maximum of 10 health points back."
 
-[node name="MetalCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Metal Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/MetalCard"]
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Metal Card"]
 layout_mode = 2
 texture = ExtResource("6_qvwma")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/MetalCard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Metal Card"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_oykaw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Metal Card/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Metal Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "Metal Card:"
 
-[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/MetalCard/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Metal Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Deals 25 damage on hit and ignores
-armor"
+armor."
 
-[node name="LightningCard" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Lightning Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/LightningCard"]
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Lightning Card"]
 layout_mode = 2
 texture = ExtResource("7_3qgbp")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/LightningCard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Lightning Card"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_oykaw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Lightning Card/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Lightning Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "Lightning Card:"
 
-[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/LightningCard/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Lightning Card/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Deals 10 damage on hit and shocks the 
-enemy for a short amount of time
+enemy for a short amount of time.
 While shocked, enemies can't move and
-suffer 5 damage per second
-Holding this card gives the player movement
-speed boost"
+suffer 5 damage per second.
+Can't shock an enemy that is currently
+being shocked.
+Holding this card gives the player a movement
+speed boost."
 
+[node name="The Fist" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Fist"]
+layout_mode = 2
+texture = ExtResource("9_knx4d")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/The Fist"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/The Fist/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/The Fist/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "The Fist:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/The Fist/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "If the next thrown card hits
+an enemy it deals an additional 10 damage.
+Can be stacked."
+
+[node name="The Snail" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Snail"]
+layout_mode = 2
+texture = ExtResource("10_v6moc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/The Snail"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/The Snail/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/The Snail/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "The Snail:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/The Snail/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "If the next thrown card
+hits an ememy it reduces their movement speed, 
+attack speed and damage 
+dealt by a small amount.
+Can be stacked.
+Can't slow down an enemy that is
+already slowed down, frozen or being
+shocked.
+Freezing or shocking an enemy
+that is slowed down will end the
+slowing effect
+immediately.
+"
+
+[node name="The Printer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Printer"]
+layout_mode = 2
+texture = ExtResource("11_mix8p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/The Printer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/The Printer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/The Printer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "The Printer:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/The Printer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Creates up to two copies
+of the card held in hand and
+adds it to the players inventory.
+The amount of copies created
+depends on the available inventory space."
+
+[node name="Enemy" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Enemy"]
+layout_mode = 2
+texture = ExtResource("12_nlu7b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Enemy"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Enemy/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Enemy/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Enemy:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Enemy/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "An ordinary enemy that has
+50 health points, 5 movement
+speed, 0.8 second attack speed
+and deals 10 damage on hit."
+
+[node name="Speedster" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Speedster"]
+layout_mode = 2
+texture = ExtResource("13_b6psw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Speedster"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Speedster/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Speedster/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Speedster:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Speedster/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "A speedy enemy that has 50
+health points, 7 movement speed, 
+0.5 second attack speed and deals 10
+damage on hit while making
+the player
+bleed for a short
+amount of time.
+While bleeding, the player loses 2
+health points per second."
+
+[node name="Tank" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Tank"]
+layout_mode = 2
+texture = ExtResource("14_xirrx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Tank"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Tank/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Tank/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Tank:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Tank/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "A beefy and strong enemy 
+that has 100
+health points, 4 movement speed,
+1.1 second attack speed and deals
+20 damage on hit while knocking
+the player backwards for a short distance."
+
+[node name="Armored Enemy" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Armored Enemy"]
+layout_mode = 2
+texture = ExtResource("15_r2ytk")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Armored Enemy"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Armored Enemy/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Armored Enemy/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Armored Enemy:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Armored Enemy/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "An up-armored enemy that
+has the same attributes as the
+ordinary enemy, except they have
+50 points worth of armor
+as well.
+Hitting this enemy reduces their armor 
+first, then their health points if the
+armor is destroyed."
+
+[node name="Boss" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Boss"]
+layout_mode = 2
+texture = ExtResource("16_6huin")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Boss"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_oykaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Boss/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Boss/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Boss:"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Boss/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "The most intimidating enemy of
+all who has 100 health points, 6
+movement speed, 0.6 second
+attack speed and deals
+30 damage on hit while knocking
+the player backwards for a short distance."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.374132
+anchor_top = 0.848765
+anchor_right = 0.625868
+anchor_bottom = 0.941358
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="GoBack" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Go Back"
+
+[connection signal="pressed" from="HBoxContainer/Cards" to="." method="_on_cards_pressed"]
+[connection signal="pressed" from="HBoxContainer/Consumables" to="." method="_on_consumables_pressed"]
+[connection signal="pressed" from="HBoxContainer/Enemies" to="." method="_on_enemies_pressed"]
 [connection signal="pressed" from="VBoxContainer/GoBack" to="." method="_on_go_back_pressed"]
