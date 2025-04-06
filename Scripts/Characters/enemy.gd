@@ -52,6 +52,8 @@ func enemy_hit(damage, is_metal):
 		print("enemy hp: %s" % health)
 		if !sees_player:
 			sees_player = true
+			if !GlobalVariables.enemy_discovered:
+				GlobalVariables.enemy_discovered = true
 	else:
 		health = 0
 		queue_free()
@@ -139,6 +141,8 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		if !sees_player:
 			sees_player = true
+			if !GlobalVariables.enemy_discovered:
+				GlobalVariables.enemy_discovered = true
 		player_in_range = true
 		while player_in_range:
 			await get_tree().create_timer(attack_speed).timeout
@@ -161,3 +165,5 @@ func _on_timer_timeout() -> void:
 					var collider = $VisionRayCast.get_collider()
 					if collider.is_in_group("Player"):
 						sees_player = true
+						if !GlobalVariables.enemy_discovered:
+							GlobalVariables.enemy_discovered = true

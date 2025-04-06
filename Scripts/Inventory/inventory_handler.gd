@@ -48,6 +48,7 @@ func _ready() -> void:
 	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
 	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
 	starter.icon = preload("res://Icons/card.png")
+	GlobalVariables.card_discovered = true
 	
 	inventory_slots[0].fill_slot(starter)
 	inventory_slots[1].fill_slot(starter)
@@ -63,6 +64,25 @@ func pickup_card(item : ItemData):
 			slot.fill_slot(item)
 			GlobalVariables.cards_on_ground -= 1
 			found_slot = true
+			match item.item_name:
+				"Card":
+					if !GlobalVariables.card_discovered:
+						GlobalVariables.card_discovered = true
+				"Fire Card":
+					if !GlobalVariables.fire_card_discovered:
+						GlobalVariables.fire_card_discovered = true
+				"Ice Card":
+					if !GlobalVariables.ice_card_discovered:
+						GlobalVariables.ice_card_discovered = true
+				"Healing Card":
+					if !GlobalVariables.healing_card_discovered:
+						GlobalVariables.healing_card_discovered = true
+				"Metal Card":
+					if !GlobalVariables.metal_card_discovered:
+						GlobalVariables.metal_card_discovered = true
+				"Lightning Card":
+					if !GlobalVariables.lightning_card_discovered:
+						GlobalVariables.lightning_card_discovered = true
 			break
 			
 	if (!found_slot):
@@ -84,13 +104,19 @@ func pickup_consumable(item : ItemData):
 			fist_pickedup = true
 			bonus_damage += FIST_BONUS_DAMAGE
 			print("Next thrown card deals bonus damage!")
+			if !GlobalVariables.the_fist_discovered:
+				GlobalVariables.the_fist_discovered = true
 		"The Snail":
 			snail_pickedup = true
 			slow_value += SNAIL_SLOW_VALUE
 			slow_damage += SNAIL_ATTACK_DAMAGE
 			slow_att_speed += SNAIL_ATTACK_SPEED
 			print("Next thrown card slows down the enemy!")
+			if !GlobalVariables.the_snail_discovered:
+				GlobalVariables.the_snail_discovered = true
 		"The Printer":
+			if !GlobalVariables.the_printer_discovered:
+				GlobalVariables.the_printer_discovered = true
 			var helper = 0
 			for slot in inventory_slots:
 				if slot.is_in_focus && slot.is_filled:

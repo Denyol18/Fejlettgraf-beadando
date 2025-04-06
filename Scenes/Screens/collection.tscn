@@ -73,8 +73,8 @@ size_flags_vertical = 3
 theme_override_constants/separation = 50
 
 [node name="Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Card"]
 layout_mode = 2
@@ -104,6 +104,7 @@ theme_override_font_sizes/font_size = 30
 text = "Deals 10 damage on hit."
 
 [node name="Fire Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Fire Card"]
@@ -141,6 +142,7 @@ it's supposed to
 and the fire card deals no damage."
 
 [node name="Ice Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Ice Card"]
@@ -179,6 +181,7 @@ will not freeze the enemy
 and will not deal any damage."
 
 [node name="Healing Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Healing Card"]
@@ -212,6 +215,7 @@ One card can only give
 a maximum of 10 health points back."
 
 [node name="Metal Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Metal Card"]
@@ -243,6 +247,7 @@ text = "Deals 25 damage on hit and ignores
 armor."
 
 [node name="Lightning Card" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Lightning Card"]
@@ -282,7 +287,6 @@ speed boost."
 [node name="The Fist" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Fist"]
 layout_mode = 2
@@ -316,7 +320,6 @@ Can be stacked."
 [node name="The Snail" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Snail"]
 layout_mode = 2
@@ -360,7 +363,6 @@ immediately.
 [node name="The Printer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/The Printer"]
 layout_mode = 2
@@ -396,7 +398,6 @@ depends on the available inventory space."
 [node name="Enemy" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Enemy"]
 layout_mode = 2
@@ -431,7 +432,6 @@ and deals 10 damage on hit."
 [node name="Speedster" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Speedster"]
 layout_mode = 2
@@ -471,7 +471,6 @@ health points per second."
 [node name="Tank" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Tank"]
 layout_mode = 2
@@ -508,7 +507,6 @@ the player backwards for a short distance."
 [node name="Armored Enemy" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Armored Enemy"]
 layout_mode = 2
@@ -547,7 +545,6 @@ armor is destroyed."
 [node name="Boss" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Boss"]
 layout_mode = 2
@@ -580,6 +577,20 @@ movement speed, 0.6 second
 attack speed and deals
 30 damage on hit while knocking
 the player backwards for a short distance."
+
+[node name="No Items" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/No Items"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "There are no items to show!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
