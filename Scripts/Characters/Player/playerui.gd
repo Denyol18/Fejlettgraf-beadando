@@ -2,6 +2,8 @@ extends Control
 class_name PlayerUI
 
 
+signal check_cards
+
 @export var player_health_label : Label
 @export var stopwatch_label : Label
 @export var enemy_count_label : Label
@@ -11,7 +13,6 @@ var player_health
 var time = 0.0
 var stopped = false
 var enemies
-
 
 func _process(delta: float) -> void:
 	update_stopwatch_label()
@@ -23,8 +24,22 @@ func _process(delta: float) -> void:
 	
 	if GlobalVariables.enemies.size() == 0:
 		stopped = true
-		GlobalVariables.time_to_complete = stopwatch_label.text
+		GlobalVariables.time_to_complete_text = stopwatch_label.text
+		
+		if time / 60 < 1:
+			if !GlobalVariables.in_a_hurry_unlocked:
+				GlobalVariables.in_a_hurry_unlocked = true
+				
 		await get_tree().create_timer(3).timeout
+		
+		check_cards.emit()
+		if GlobalVariables.cards_in_inventory >= 5:
+			if !GlobalVariables.hoarder_unlocked:
+				GlobalVariables.hoarder_unlocked = true
+				
+		if player_health <= 10:
+			if !GlobalVariables.survivor_unlocked:
+				GlobalVariables.survivor_unlocked = true
 		
 		if GlobalVariables.level_name == GlobalVariables.FINAL_LEVEL_NAME:
 			get_tree().change_scene_to_file("res://Scenes/Screens/final_level_completed.tscn")

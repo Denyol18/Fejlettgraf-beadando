@@ -11,6 +11,194 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r630q")
 
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0625
+anchor_top = 0.111111
+anchor_right = 0.9375
+anchor_bottom = 0.701389
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="In a Hurry" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/In a Hurry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "In a Hurry"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/In a Hurry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Complete a level 
+under 1 minute."
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/In a Hurry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Reward: Lightning
+Card"
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/In a Hurry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Locked"
+
+[node name="Hoarder" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Hoarder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Hoarder"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Hoarder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "At the end of 
+a level have 
+at least
+five cards in your 
+inventory."
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Hoarder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Reward: 
+The Printer
+consumable"
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Hoarder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Locked"
+
+[node name="Survivor" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Survivor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Survivor"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Survivor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "At the end of 
+a level have
+10 or less 
+health points."
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Survivor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Reward:
+Healing Card"
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Survivor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Locked"
+
+[node name="Destroyer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Destroyer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Destroyer"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Destroyer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Kill 50 enemies."
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Destroyer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Reward:
+Metal Card"
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Destroyer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Locked"
+
+[node name="Completionist" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Completionist"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Completionist "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Completionist"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Complete the final
+level of the game."
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Completionist"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Reward:
+New run option"
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Completionist"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Locked"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1

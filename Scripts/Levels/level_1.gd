@@ -65,7 +65,7 @@ func on_pause():
 		GlobalVariables.game_paused = true
 		pause_menu.show()
 		Engine.time_scale = 0
-		
+	
 	paused = !paused
 
 
@@ -102,11 +102,11 @@ func spawn_cons():
 		if !cons_spawner.is_filled:
 			
 			cons_spawner.is_filled = true
-			var random_number = rng.randi_range(1, 11)
+			var random_number = rng.randi_range(1, 10)
 		
-			if 0 <= random_number && random_number <= 3: 
+			if 1 <= random_number && random_number <= 3: 
 				cons_instance = the_fist.instantiate()
-			elif 4 <= random_number && random_number <= 7:
+			elif 4 <= random_number && random_number <= 6:
 				cons_instance = the_snail.instantiate()
 			else:
 				cons_instance = the_printer.instantiate()

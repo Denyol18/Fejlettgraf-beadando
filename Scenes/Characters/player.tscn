@@ -284,6 +284,7 @@ visible = false
 shape = SubResource("BoxShape3D_msfq4")
 
 [connection signal="input_event" from="." to="PickupArea" method="_on_player_input_event"]
+[connection signal="check_cards" from="PlayerUI" to="PlayerUI/InventoryUI" method="cards_in_inventory"]
 [connection signal="body_entered" from="PickupArea" to="PickupArea" method="on_item_entered_area"]
 [connection signal="on_card_pickedup" from="PickupArea" to="PlayerUI/InventoryUI" method="pickup_card"]
 [connection signal="on_consumable_pickedup" from="PickupArea" to="PlayerUI/InventoryUI" method="pickup_consumable"]

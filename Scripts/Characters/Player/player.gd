@@ -91,3 +91,7 @@ func heal(value):
 
 func change_speed(value):
 	speed = value
+
+
+func return_hp():
+	return health

@@ -106,6 +106,7 @@ func pickup_consumable(item : ItemData):
 			print("Next thrown card deals bonus damage!")
 			if !GlobalVariables.the_fist_discovered:
 				GlobalVariables.the_fist_discovered = true
+		
 		"The Snail":
 			snail_pickedup = true
 			slow_value += SNAIL_SLOW_VALUE
@@ -114,6 +115,7 @@ func pickup_consumable(item : ItemData):
 			print("Next thrown card slows down the enemy!")
 			if !GlobalVariables.the_snail_discovered:
 				GlobalVariables.the_snail_discovered = true
+		
 		"The Printer":
 			if !GlobalVariables.the_printer_discovered:
 				GlobalVariables.the_printer_discovered = true
@@ -139,6 +141,9 @@ func pickup_consumable(item : ItemData):
 
 func _process(_delta: float) -> void:
 	is_game_over()
+	
+	if !GlobalVariables.game_paused:
+		current_slot.grab_focus()
 	
 	if current_slot.slot_data != null:
 		if current_slot.slot_data.item_name == "Lightning Card":
@@ -234,6 +239,13 @@ func is_game_over():
 			GlobalVariables.game_over_reason = "You ran out of cards!"
 			await get_tree().create_timer(3).timeout
 			get_tree().change_scene_to_file("res://Scenes/Screens/game_over.tscn")
+
+
+func cards_in_inventory():
+	GlobalVariables.cards_in_inventory = 0
+	for slot in inventory_slots:
+		if slot.is_filled:
+			GlobalVariables.cards_in_inventory += 1
 
 
 func layer_changer(card):
