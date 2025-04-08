@@ -29,6 +29,8 @@ var survivor_unlocked = false
 var destroyer_unlocked = false
 var completionist_unlocked = false
 
+var normal_mode
+
 var level_name
 var level_name_file_format
 var cards_on_ground
@@ -36,6 +38,6 @@ var enemies
 var game_paused = false
 
 var time_to_complete_text
-var time_to_complete
 var game_over_reason
 var cards_in_inventory
+var enemies_killed = 0

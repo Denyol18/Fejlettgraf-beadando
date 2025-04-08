@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0u2ljauow1hu"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/run_option_selection.gd" id="1_3lwnq"]
+[ext_resource type="ButtonGroup" uid="uid://b5ps2kqftreyy" path="res://Scenes/Screens/run_option_button_group.tres" id="1_d48d5"]
+[ext_resource type="Theme" uid="uid://bihqj6ffr4s43" path="res://Materials/run_option_selection.tres" id="2_3iwyj"]
+
+[node name="RunOptionSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3lwnq")
+
+[node name="GameName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.339844
+anchor_top = 0.223765
+anchor_right = 0.660156
+anchor_bottom = 0.351852
+theme_override_font_sizes/font_size = 50
+text = "Select run option:"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.265625
+anchor_top = 0.381944
+anchor_right = 0.735156
+anchor_bottom = 0.527778
+theme_override_constants/separation = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Normal" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("2_3iwyj")
+theme_override_font_sizes/font_size = 30
+button_group = ExtResource("1_d48d5")
+text = "Normal: Start each level with 5 cards"
+alignment = 1
+
+[node name="NoCards" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("2_3iwyj")
+theme_override_font_sizes/font_size = 30
+button_group = ExtResource("1_d48d5")
+text = "No Cards: Start each level with no cards"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.590278
+anchor_right = 0.578125
+anchor_bottom = 0.734722
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="GoBack" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Go Back"
+
+[connection signal="pressed" from="VBoxContainer/Normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="VBoxContainer/NoCards" to="." method="_on_no_cards_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer2/GoBack" to="." method="_on_go_back_pressed"]

@@ -21,9 +21,13 @@ var cons_spawn_array
 var card = load("res://Scenes/Items/Cards/card.tscn")
 var fire_card = load("res://Scenes/Items/Cards/fire_card.tscn")
 var ice_card = load("res://Scenes/Items/Cards/ice_card.tscn")
+var healing_card = load("res://Scenes/Items/Cards/healing_card.tscn")
+var metal_card = load("res://Scenes/Items/Cards/metal_card.tscn")
+var lightning_card = load("res://Scenes/Items/Cards/lightning_card.tscn")
 
 var the_fist = load("res://Scenes/Items/Consumables/the_fist.tscn")
 var the_snail = load("res://Scenes/Items/Consumables/the_snail.tscn")
+var the_printer = load("res://Scenes/Items/Consumables/the_printer.tscn")
 
 var card_instance
 var cons_instance
@@ -77,6 +81,12 @@ func spawn_cards():
 				card_instance = ice_card.instantiate()
 			elif random_number == 2:
 				card_instance = fire_card.instantiate()
+			elif random_number == 3 && GlobalVariables.survivor_unlocked:
+				card_instance = healing_card.instantiate()
+			elif random_number == 4 && GlobalVariables.destroyer_unlocked:
+				card_instance = metal_card.instantiate()
+			elif random_number == 5 && GlobalVariables.in_a_hurry_unlocked:
+				card_instance = lightning_card.instantiate()
 			else:
 				card_instance = card.instantiate()
 				
@@ -92,12 +102,14 @@ func spawn_cons():
 		if !cons_spawner.is_filled:
 			
 			cons_spawner.is_filled = true
-			var random_number = rng.randi_range(0, 10)
+			var random_number = rng.randi_range(1, 10)
 		
-			if 0 <= random_number && random_number <= 5: 
-				cons_instance = the_fist.instantiate()
-			else:
+			if 1 <= random_number && random_number <= 3: 
 				cons_instance = the_snail.instantiate()
+			elif 4 <= random_number && random_number <= 6 && GlobalVariables.hoarder_unlocked:
+				cons_instance = the_printer.instantiate()
+			else:
+				cons_instance = the_fist.instantiate()
 			
 			cons_instance.position = cons_spawner.global_position
 			$".".add_child(cons_instance)

@@ -40,9 +40,15 @@ func _process(delta: float) -> void:
 		if player_health <= 10:
 			if !GlobalVariables.survivor_unlocked:
 				GlobalVariables.survivor_unlocked = true
+				
+		if GlobalVariables.enemies_killed >= 50:
+			if !GlobalVariables.destroyer_unlocked:
+				GlobalVariables.destroyer_unlocked = true
 		
 		if GlobalVariables.level_name == GlobalVariables.FINAL_LEVEL_NAME:
 			get_tree().change_scene_to_file("res://Scenes/Screens/final_level_completed.tscn")
+			if !GlobalVariables.completionist_unlocked:
+				GlobalVariables.completionist_unlocked = true
 		else:
 			get_tree().change_scene_to_file("res://Scenes/Screens/level_completed.tscn")
 	

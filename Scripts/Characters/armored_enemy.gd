@@ -29,6 +29,7 @@ func enemy_hit(damage, is_metal):
 			else:
 				health = 0
 				queue_free()
+				GlobalVariables.enemies_killed += 1
 				print("enemy dead")
 			
 	elif is_metal:
@@ -42,6 +43,7 @@ func enemy_hit(damage, is_metal):
 		else:
 			health = 0
 			queue_free()
+			GlobalVariables.enemies_killed += 1
 			print("enemy dead")
 		
 	else:
@@ -55,6 +57,7 @@ func enemy_hit(damage, is_metal):
 		else:
 			health = 0
 			queue_free()
+			GlobalVariables.enemies_killed += 1
 			print("enemy dead")
 
 

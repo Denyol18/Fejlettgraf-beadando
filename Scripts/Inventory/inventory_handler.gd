@@ -43,18 +43,19 @@ func _ready() -> void:
 	inventory_slots[0].is_in_focus = true
 	current_slot = inventory_slots[0]
 	
-	var starter : ItemData = ItemData.new()
-	starter.item_name = "Card"
-	starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
-	starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
-	starter.icon = preload("res://Icons/card.png")
-	GlobalVariables.card_discovered = true
-	
-	inventory_slots[0].fill_slot(starter)
-	inventory_slots[1].fill_slot(starter)
-	inventory_slots[2].fill_slot(starter)
-	inventory_slots[3].fill_slot(starter)
-	inventory_slots[4].fill_slot(starter)
+	if GlobalVariables.normal_mode:
+		var starter : ItemData = ItemData.new()
+		starter.item_name = "Card"
+		starter.item_model_prefab = preload("res://Scenes/Items/Cards/card.tscn")
+		starter.thrown_item_model_prefab = preload("res://Scenes/Items/Cards/thrown_card.tscn")
+		starter.icon = preload("res://Icons/card.png")
+		GlobalVariables.card_discovered = true
+		
+		inventory_slots[0].fill_slot(starter)
+		inventory_slots[1].fill_slot(starter)
+		inventory_slots[2].fill_slot(starter)
+		inventory_slots[3].fill_slot(starter)
+		inventory_slots[4].fill_slot(starter)
 
 func pickup_card(item : ItemData):
 	var found_slot = false

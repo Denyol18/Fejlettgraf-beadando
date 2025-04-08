@@ -81,11 +81,11 @@ func spawn_cards():
 				card_instance = ice_card.instantiate()
 			elif random_number == 2:
 				card_instance = fire_card.instantiate()
-			elif random_number == 3:
+			elif random_number == 3 && GlobalVariables.survivor_unlocked:
 				card_instance = healing_card.instantiate()
-			elif random_number == 4:
+			elif random_number == 4 && GlobalVariables.destroyer_unlocked:
 				card_instance = metal_card.instantiate()
-			elif random_number == 5:
+			elif random_number == 5 && GlobalVariables.in_a_hurry_unlocked:
 				card_instance = lightning_card.instantiate()
 			else:
 				card_instance = card.instantiate()
@@ -105,11 +105,11 @@ func spawn_cons():
 			var random_number = rng.randi_range(1, 10)
 		
 			if 1 <= random_number && random_number <= 3: 
-				cons_instance = the_fist.instantiate()
-			elif 4 <= random_number && random_number <= 6:
 				cons_instance = the_snail.instantiate()
-			else:
+			elif 4 <= random_number && random_number <= 6 && GlobalVariables.hoarder_unlocked:
 				cons_instance = the_printer.instantiate()
+			else:
+				cons_instance = the_fist.instantiate()
 			
 			cons_instance.position = cons_spawner.global_position
 			$".".add_child(cons_instance)
