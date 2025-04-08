@@ -17,7 +17,11 @@ func _on_next_level_pressed() -> void:
 
 
 func _on_new_run_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
+	if GlobalVariables.completionist_unlocked:
+		get_tree().change_scene_to_file("res://Scenes/Screens/run_option_selection.tscn")
+	else:
+		GlobalVariables.normal_mode = true
+		get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 
 
 func _on_main_menu_pressed() -> void:

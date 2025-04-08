@@ -51,6 +51,8 @@ func _process(delta: float) -> void:
 				GlobalVariables.completionist_unlocked = true
 		else:
 			get_tree().change_scene_to_file("res://Scenes/Screens/level_completed.tscn")
+			
+		GlobalVariables.save_data()
 	
 	if stopped:
 		return

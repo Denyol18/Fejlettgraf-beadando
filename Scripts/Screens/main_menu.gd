@@ -2,6 +2,10 @@ extends Control
 class_name MainMenu
 
 
+func _ready() -> void:
+	GlobalVariables.load_data()
+
+
 func _on_play_pressed() -> void:
 	if GlobalVariables.completionist_unlocked:
 		get_tree().change_scene_to_file("res://Scenes/Screens/run_option_selection.tscn")
