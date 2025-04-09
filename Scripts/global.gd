@@ -6,6 +6,8 @@ const GRAVITY = 9.8
 const FINAL_LEVEL_NAME = "Level 2"
 
 
+var game_started = false
+
 var card_discovered = false
 var fire_card_discovered = false
 var ice_card_discovered = false
@@ -53,6 +55,7 @@ func save_data():
 		"healing_card_discovered" : healing_card_discovered,
 		"metal_card_discovered" : metal_card_discovered,
 		"lightning_card_discovered" : lightning_card_discovered,
+		
 		"the_fist_discovered" : the_fist_discovered,
 		"the_snail_discovered" : the_snail_discovered,
 		"the_printer_discovered" : the_printer_discovered,
@@ -74,11 +77,40 @@ func save_data():
 	
 	var json_string = JSON.stringify(save_dict)
 	save_file.store_line(json_string)
+	
+	print(json_string)
 
 
 func load_data():
 	if not FileAccess.file_exists("user://savegame.save"):
 		save_data()
+		
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
 	var data = JSON.parse_string(save_file.get_as_text())
+	
+	card_discovered = data["card_discovered"]
+	fire_card_discovered = data["fire_card_discovered"]
+	ice_card_discovered = data["ice_card_discovered"]
+	healing_card_discovered = data["healing_card_discovered"]
+	metal_card_discovered = data["metal_card_discovered"]
+	lightning_card_discovered = data["lightning_card_discovered"]
+	
+	the_fist_discovered = data["the_fist_discovered"]
+	the_snail_discovered = data["the_snail_discovered"]
+	the_printer_discovered = data["the_printer_discovered"]
+	
+	enemy_discovered = data["enemy_discovered"]
+	speedster_discovered = data["speedster_discovered"]
+	tank_discovered = data["tank_discovered"]
+	armored_discovered = data["armored_discovered"]
+	boss_discovered = data["boss_discovered"]
+	
+	in_a_hurry_unlocked = data["in_a_hurry_unlocked"]
+	hoarder_unlocked = data["hoarder_unlocked"]
+	survivor_unlocked = data["survivor_unlocked"]
+	destroyer_unlocked = data["destroyer_unlocked"]
+	completionist_unlocked = data["completionist_unlocked"]
+	
+	enemies_killed = data["enemies_killed"]
+	
 	print(data)

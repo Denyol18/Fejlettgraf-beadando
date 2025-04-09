@@ -3,7 +3,9 @@ class_name MainMenu
 
 
 func _ready() -> void:
-	GlobalVariables.load_data()
+	if !GlobalVariables.game_started:
+		GlobalVariables.load_data()
+		GlobalVariables.game_started = true
 
 
 func _on_play_pressed() -> void:
