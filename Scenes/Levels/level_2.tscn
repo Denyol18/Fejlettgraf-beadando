@@ -14,12 +14,12 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_mgc3m"]
+[sub_resource type="Sky" id="Sky_mke1r"]
 sky_material = SubResource("ProceduralSkyMaterial_r0flo")
 
 [sub_resource type="Environment" id="Environment_dqwtr"]
 background_mode = 2
-sky = SubResource("Sky_mgc3m")
+sky = SubResource("Sky_mke1r")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -206,6 +206,7 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 player_path = NodePath("../../Player")
 
 [node name="CardSpawnPoints" type="Node3D" parent="."]
+visible = false
 
 [node name="CardSpawner" type="Node3D" parent="CardSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0108, 0.5, 24.8709)
@@ -508,6 +509,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7782, 0.5, 21.3136)
 script = ExtResource("6_f56xs")
 
 [node name="ConsSpawnPoints" type="Node3D" parent="."]
+visible = false
 
 [node name="ConsSpawner" type="Node3D" parent="ConsSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37212, 0.5, 26.131)
@@ -611,6 +613,7 @@ surface_material_override/0 = ExtResource("1_cqdtr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Floor"]
 transform = Transform3D(55, 0, 0, 0, 0.1, 0, 0, 0, 55, 0, -0.05, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_1dymo")
 
 [node name="Wall1" type="StaticBody3D" parent="Obstacles"]
@@ -625,6 +628,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall1"]
 transform = Transform3D(10, 0, 0, 0, 3, 0, 0, 0, 2, 22.0095, 1.5, 11.5233)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_wp0gh")
 
 [node name="Wall4" type="StaticBody3D" parent="Obstacles"]
@@ -639,6 +643,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall4"]
 transform = Transform3D(15, 0, 0, 0, 3, 0, 0, 0, 2, 16.0364, 1.5, 1.91008)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_kpvvn")
 
 [node name="Wall5" type="StaticBody3D" parent="Obstacles"]
@@ -653,6 +658,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall5"]
 transform = Transform3D(-6.55671e-07, 0, 2, 0, 3, 0, -15, 0, -8.74228e-08, 7.568, 1.5, -4.59)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_t1h05")
 
 [node name="Wall6" type="StaticBody3D" parent="Obstacles"]
@@ -667,6 +673,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall6"]
 transform = Transform3D(-20, 0, -3.01992e-07, 0, 3, 0, 3.01992e-06, 0, -2, 7.568, 1.5, -11.9094)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_vu1kk")
 
 [node name="Wall7" type="StaticBody3D" parent="Obstacles"]
@@ -681,6 +688,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall7"]
 transform = Transform3D(-20, 0, -3.01992e-07, 0, 3, 0, 3.01992e-06, 0, -2, -10.0982, 1.5, -1.17686)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_xb6h8")
 
 [node name="Wall8" type="StaticBody3D" parent="Obstacles"]
@@ -695,6 +703,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall8"]
 transform = Transform3D(-10, 0, -3.01992e-07, 0, 3, 0, 1.50996e-06, 0, -2, -22.112, 1.5, -7.85226)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_rncha")
 
 [node name="Wall9" type="StaticBody3D" parent="Obstacles"]
@@ -709,6 +718,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall9"]
 transform = Transform3D(-4.37114e-07, 0, 2, 0, 3, 0, -10, 0, -8.74228e-08, -22.112, 1.5, -7.18587)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_uysn4")
 
 [node name="Wall10" type="StaticBody3D" parent="Obstacles"]
@@ -723,6 +733,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall10"]
 transform = Transform3D(-7.64949e-07, 0, 2, 0, 3, 0, -17.5, 0, -8.74228e-08, -22.112, 1.5, -19.6327)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_1vjej")
 
 [node name="Wall11" type="StaticBody3D" parent="Obstacles"]
@@ -737,6 +748,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall11"]
 transform = Transform3D(7.07107, 0, 1.41421, 0, 3, 0, -7.07107, 0, 1.41421, -38.33, 1.5, -21.27)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_elmov")
 
 [node name="Wall12" type="StaticBody3D" parent="Obstacles"]
@@ -751,6 +763,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall12"]
 transform = Transform3D(7.07107, 0, -1.41421, 0, 3, 0, 7.07107, 0, 1.41421, -38.3295, 1.5, -15.6075)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_fcm5k")
 
 [node name="Wall13" type="StaticBody3D" parent="Obstacles"]
@@ -765,6 +778,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall13"]
 transform = Transform3D(25, 0, 0, 0, 4, 0, 0, 0, 2, -41.5447, 1.96367, -24.51)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_kv5rb")
 
 [node name="Wall2" type="StaticBody3D" parent="Obstacles"]
@@ -779,6 +793,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall2"]
 transform = Transform3D(-4.37114e-07, 0, 2, 0, 3, 0, -10, 0, -8.74228e-08, 11.1056, 1.5, 14.1152)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_v7fg7")
 
 [node name="Wall3" type="StaticBody3D" parent="Obstacles"]
@@ -793,6 +808,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Wall3"]
 transform = Transform3D(-8.74228e-07, 0, 2, 0, 3, 0, -20, 0, -8.74228e-08, 3.23728, 1.5, 12.2244)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ihjwv")
 
 [node name="Box" type="StaticBody3D" parent="Obstacles"]
@@ -807,6 +823,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box"]
 transform = Transform3D(7.5, 0, 0, 0, 1.2, 0, 0, 0, 7.5, -14.8096, 0.606, 23.5691)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_vhkri")
 
 [node name="Box5" type="StaticBody3D" parent="Obstacles"]
@@ -835,6 +852,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box6"]
 transform = Transform3D(5, 0, 0, 0, 1.2, 0, 0, 0, 5, -27.1534, 0.606, -0.904376)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_msi4u")
 
 [node name="Box2" type="StaticBody3D" parent="Obstacles"]
@@ -849,6 +867,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box2"]
 transform = Transform3D(7.5, 0, 0, 0, 1.2, 0, 0, 0, 7.5, -14.8096, 0.606, 23.5691)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_iwlju")
 
 [node name="Box3" type="StaticBody3D" parent="Obstacles"]
@@ -863,6 +882,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box3"]
 transform = Transform3D(7.5, 0, 0, 0, 1.2, 0, 0, 0, 7.5, -14.8096, 0.606, 23.5691)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_wirx6")
 
 [node name="Box4" type="StaticBody3D" parent="Obstacles"]
@@ -877,6 +897,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Box4"]
 transform = Transform3D(7.5, 0, 0, 0, 1.2, 0, 0, 0, 7.5, -14.8096, 0.606, 23.5691)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ecap6")
 
 [node name="Cylinder" type="StaticBody3D" parent="Obstacles"]
@@ -890,6 +911,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cylinder"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, -10.078, 1, -12.363)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_o8ahm")
 
 [node name="Cylinder2" type="StaticBody3D" parent="Obstacles"]
@@ -903,6 +925,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cylinder2"]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 2.024, 2.03861, -24.0631)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ls2ls")
 
 [node name="Cylinder3" type="StaticBody3D" parent="Obstacles"]
@@ -916,6 +939,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cylinder3"]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 9.13244, 2.03861, -23.163)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_r07fe")
 
 [node name="Cylinder4" type="StaticBody3D" parent="Obstacles"]
@@ -929,6 +953,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cylinder4"]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -5.29494, 2.03861, -24.982)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_oetq6")
 
 [node name="Walls" type="Node3D" parent="."]
@@ -944,6 +969,7 @@ surface_material_override/0 = ExtResource("1_cqdtr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall1"]
 transform = Transform3D(55, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -27.2806)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_l5phn")
 
 [node name="MainWall2" type="StaticBody3D" parent="Walls"]
@@ -958,6 +984,7 @@ surface_material_override/0 = ExtResource("1_cqdtr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall2"]
 transform = Transform3D(55, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 2.41427, -2.287)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_kwtpb")
 
 [node name="MainWall3" type="StaticBody3D" parent="Walls"]
@@ -972,6 +999,7 @@ surface_material_override/0 = ExtResource("1_cqdtr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall3"]
 transform = Transform3D(55, 0, 0, 0, 5, 0, 0, 0, 0.5, 5.4948e-07, 2.41427, -27.3086)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_kk81g")
 
 [node name="MainWall4" type="StaticBody3D" parent="Walls"]
@@ -986,6 +1014,7 @@ surface_material_override/0 = ExtResource("1_cqdtr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MainWall4"]
 transform = Transform3D(55, 0, 0, 0, 5, 0, 0, 0, 0.5, -5.4203e-07, 2.41427, -2.38349)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_cjncm")
 
 [node name="Ceiling" type="StaticBody3D" parent="Walls"]
@@ -1000,6 +1029,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ceiling"]
 transform = Transform3D(36, 0, 0, 0, 0.5, 0, 0, 0, 10, -15.447, 3.228, 11.541)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_7f2ky")
 
 [node name="Ceiling2" type="StaticBody3D" parent="Walls"]
@@ -1014,6 +1044,7 @@ surface_material_override/0 = ExtResource("4_ekqf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ceiling2"]
 transform = Transform3D(36, 0, 0, 0, 0.5, 0, 0, 0, 2.75, -15.447, 3.228, 5.21307)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_8tvid")
 
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

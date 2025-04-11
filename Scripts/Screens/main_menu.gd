@@ -28,5 +28,9 @@ func _on_collection_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Screens/collection.tscn")
 
 
+func _on_reset_pressed() -> void:
+	GlobalVariables.delete_save()
+
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()

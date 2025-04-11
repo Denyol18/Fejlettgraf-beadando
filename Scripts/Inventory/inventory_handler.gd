@@ -148,7 +148,7 @@ func _process(_delta: float) -> void:
 	
 	if current_slot.slot_data != null:
 		if current_slot.slot_data.item_name == "Lightning Card":
-			get_tree().call_group("Player", "change_speed", 11.0)
+			get_tree().call_group("Player", "change_speed", 10.0)
 		else:
 			get_tree().call_group("Player", "change_speed", player_body.ORIGINAL_SPEED)
 	else:

@@ -1,11 +1,11 @@
 extends Node3D
-class_name Level1
+class_name Level3
 
 
-const LEVEL_NAME = "Level 1"
+const LEVEL_NAME = "Level 3"
 
-const MAX_CARDS = 30
-const MAX_CONS = 6
+const MAX_CARDS = 85 
+const MAX_CONS = 16 
 
 var cards_spawned = 0
 var cons_spawned = 0
@@ -66,7 +66,7 @@ func on_pause():
 		GlobalVariables.game_paused = true
 		pause_menu.show()
 		Engine.time_scale = 0
-	
+		
 	paused = !paused
 
 

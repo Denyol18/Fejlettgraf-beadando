@@ -147,6 +147,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 
 player_path = NodePath("../../Player")
 
 [node name="CardSpawnPoints" type="Node3D" parent="."]
+visible = false
 
 [node name="CardSpawner" type="Node3D" parent="CardSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 11.6157)
@@ -349,6 +350,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.50886, 0.5, 14.0493)
 script = ExtResource("4_5uwfm")
 
 [node name="ConsSpawnPoints" type="Node3D" parent="."]
+visible = false
 
 [node name="ConsSpawner" type="Node3D" parent="ConsSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3387, 0.5, 18.114)

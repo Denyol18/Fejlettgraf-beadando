@@ -8,8 +8,8 @@ var enemy_in_collection = false
 
 
 func _ready() -> void:
+	$HBoxContainer/Cards.grab_focus()
 	cards_menu_controller()
-
 
 func _on_go_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Screens/main_menu.tscn")

@@ -3,7 +3,7 @@ class_name Global
 
 
 const GRAVITY = 9.8
-const FINAL_LEVEL_NAME = "Level 2"
+const FINAL_LEVEL_NAME = "Level 3"
 
 
 var game_started = false
@@ -114,3 +114,34 @@ func load_data():
 	enemies_killed = data["enemies_killed"]
 	
 	print(data)
+
+
+func delete_save():
+	DirAccess.remove_absolute("user://savegame.save")
+	
+	card_discovered = false
+	fire_card_discovered = false
+	ice_card_discovered = false
+	healing_card_discovered = false
+	metal_card_discovered = false
+	lightning_card_discovered = false
+
+	the_fist_discovered = false
+	the_snail_discovered = false
+	the_printer_discovered = false
+
+	enemy_discovered = false
+	speedster_discovered = false
+	tank_discovered = false
+	armored_discovered = false
+	boss_discovered = false
+
+	in_a_hurry_unlocked = false
+	hoarder_unlocked = false
+	survivor_unlocked = false
+	destroyer_unlocked = false
+	completionist_unlocked = false
+
+	enemies_killed = 0
+	
+	load_data()

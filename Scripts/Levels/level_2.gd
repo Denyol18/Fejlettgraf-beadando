@@ -37,6 +37,7 @@ var rng = RandomNumberGenerator.new()
 @onready var pause_menu = $PauseMenu
 var paused = false
 
+
 func _ready() -> void:
 	randomize()
 	
