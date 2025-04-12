@@ -149,7 +149,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30
-text = "Kill 50 enemies."
+text = "Kill 30 enemies."
 
 [node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Destroyer"]
 layout_mode = 2

@@ -15,12 +15,12 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_mgc3m"]
+[sub_resource type="Sky" id="Sky_rju0v"]
 sky_material = SubResource("ProceduralSkyMaterial_2hw4t")
 
 [sub_resource type="Environment" id="Environment_pa2k3"]
 background_mode = 2
-sky = SubResource("Sky_mgc3m")
+sky = SubResource("Sky_rju0v")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -217,6 +217,10 @@ player_path = NodePath("../../Player")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.4143, 5, 25.8321)
 player_path = NodePath("../../Player")
 
+[node name="Speedster2" parent="Enemies" instance=ExtResource("5_kyo4j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.2593, 5, -26.2715)
+player_path = NodePath("../../Player")
+
 [node name="Speedster3" parent="Enemies" instance=ExtResource("5_kyo4j")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.18491, 1, 12.9142)
 player_path = NodePath("../../Player")
@@ -229,20 +233,16 @@ player_path = NodePath("../../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 25.392)
 player_path = NodePath("../../Player")
 
-[node name="Speedster2" parent="Enemies" instance=ExtResource("5_kyo4j")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.2593, 5, -26.2715)
-player_path = NodePath("../../Player")
-
-[node name="ArmoredEnemy" parent="Enemies" instance=ExtResource("6_af0x0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.7227, 1, -8.07927)
-player_path = NodePath("../../Player")
-
 [node name="Tank" parent="Enemies" instance=ExtResource("6_ebabb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0191, 1, 7.67097)
 player_path = NodePath("../../Player")
 
 [node name="Tank2" parent="Enemies" instance=ExtResource("6_ebabb")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.93, 1, -23.2534)
+player_path = NodePath("../../Player")
+
+[node name="ArmoredEnemy" parent="Enemies" instance=ExtResource("6_af0x0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.7227, 1, -8.07927)
 player_path = NodePath("../../Player")
 
 [node name="CardSpawnPoints" type="Node3D" parent="."]

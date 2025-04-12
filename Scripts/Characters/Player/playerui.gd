@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			if !GlobalVariables.survivor_unlocked:
 				GlobalVariables.survivor_unlocked = true
 				
-		if GlobalVariables.enemies_killed >= 50:
+		if GlobalVariables.enemies_killed >= 30:
 			if !GlobalVariables.destroyer_unlocked:
 				GlobalVariables.destroyer_unlocked = true
 		

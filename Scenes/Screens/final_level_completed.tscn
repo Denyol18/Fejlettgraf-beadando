@@ -44,10 +44,10 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.374132
-anchor_top = 0.46142
-anchor_right = 0.625868
-anchor_bottom = 0.847222
+anchor_left = 0.374219
+anchor_top = 0.461111
+anchor_right = 0.625781
+anchor_bottom = 0.772222
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5

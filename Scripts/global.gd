@@ -3,7 +3,7 @@ class_name Global
 
 
 const GRAVITY = 9.8
-const FINAL_LEVEL_NAME = "Level 3"
+const FINAL_LEVEL_NAME = "Level 4"
 
 
 var game_started = false

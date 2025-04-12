@@ -16,6 +16,8 @@ func _on_next_level_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/Levels/level_2.tscn")
 	elif GlobalVariables.level_name == "Level 2":
 		get_tree().change_scene_to_file("res://Scenes/Levels/level_3.tscn")
+	elif GlobalVariables.level_name == "Level 3":
+		get_tree().change_scene_to_file("res://Scenes/Levels/level_4.tscn")
 
 
 func _on_new_run_pressed() -> void:
