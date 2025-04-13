@@ -25,10 +25,18 @@ var player_in_range = false
 var sees_player = false
 
 @onready var nav_agent = $NavigationAgent3D
+@onready var body = $MeshInstance3D
+var material
+var original_color
+var current_color
 
 
 func _ready():
 	player = get_node(player_path)
+	
+	material = body.get_surface_override_material(0)
+	original_color = material.albedo_color
+	current_color = material.albedo_color
 
 
 func _process(delta: float) -> void:
@@ -54,6 +62,10 @@ func enemy_hit(damage, is_metal):
 			sees_player = true
 			if !GlobalVariables.enemy_discovered:
 				GlobalVariables.enemy_discovered = true
+				
+		material.albedo_color = Color8(255, 255, 255)
+		await get_tree().create_timer(0.1).timeout
+		material.albedo_color = current_color
 	else:
 		health = 0
 		queue_free()
@@ -62,12 +74,20 @@ func enemy_hit(damage, is_metal):
 
 
 func burning(damage):
+	await get_tree().create_timer(0.1).timeout
+	current_color = Color8(255, 86, 0)
+	material.albedo_color = current_color
+	
 	for n in 3:
 		await get_tree().create_timer(1).timeout
 		print("ON FIRE!!!")
 		enemy_hit(damage, false)
 		
 	on_fire = false
+	await get_tree().create_timer(0.1).timeout
+	if !on_fire && !frozen && !shocked:
+		current_color = original_color
+	material.albedo_color = current_color
 
 
 func slowdown(slow_value, slow_damage, slow_att_speed):
@@ -101,8 +121,14 @@ func slowdown(slow_value, slow_damage, slow_att_speed):
 
 
 func freeze():
+	await get_tree().create_timer(0.1).timeout
+	current_color = Color8(0, 223, 223)
+	material.albedo_color = current_color
+	
 	for n in 2:
 		if !frozen:
+			current_color = original_color
+			material.albedo_color = current_color
 			return
 
 		speed = 0
@@ -115,26 +141,39 @@ func freeze():
 	attack_damage = attack_damage_original
 	attack_speed = attack_speed_original
 	frozen = false
+	if !on_fire && !frozen && !shocked:
+		current_color = original_color
+	material.albedo_color = current_color
 	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 
 
 func shock(damage):
+	await get_tree().create_timer(0.1).timeout
+	current_color = Color8(255, 255, 0)
+	material.albedo_color = current_color
+	
 	for n in 2:
 		if !shocked:
+			current_color = original_color
+			material.albedo_color = current_color
 			return
 
 		speed = 0
 		attack_damage = 0
 		attack_speed = 0
 		print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
+		await get_tree().create_timer(1).timeout
 		print("SHOCKED!!!")
 		enemy_hit(damage, false)
-		await get_tree().create_timer(1).timeout
 		
 	speed = speed_original
 	attack_damage = attack_damage_original
 	attack_speed = attack_speed_original
 	shocked = false
+	await get_tree().create_timer(0.1).timeout
+	if !on_fire && !frozen && !shocked:
+		current_color = original_color
+	material.albedo_color = current_color
 	print("Enemy stats: %s, %s, %s" % [speed, attack_damage, attack_speed])
 
 

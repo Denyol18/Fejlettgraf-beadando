@@ -1,11 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://5rbfv240vx27"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/speedster.gd" id="1_meyiy"]
+[ext_resource type="Material" uid="uid://b4lb52brh4pv4" path="res://Materials/speedster.tres" id="2_1x24t"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xith1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug51d"]
-albedo_color = Color(0.784314, 0.784314, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xxhci"]
 
@@ -26,7 +24,7 @@ script = ExtResource("1_meyiy")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_xith1")
-surface_material_override/0 = SubResource("StandardMaterial3D_ug51d")
+surface_material_override/0 = ExtResource("2_1x24t")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, -0.2, 0.615, 0.48)

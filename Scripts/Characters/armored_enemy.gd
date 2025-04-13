@@ -15,6 +15,10 @@ func enemy_hit(damage, is_metal):
 				sees_player = true
 				if !GlobalVariables.armored_discovered:
 					GlobalVariables.armored_discovered = true
+					
+			material.albedo_color = Color8(100, 100, 100)
+			await get_tree().create_timer(0.1).timeout
+			material.albedo_color = current_color
 		else:
 			var helper = armor
 			armor = 0
@@ -26,6 +30,10 @@ func enemy_hit(damage, is_metal):
 					sees_player = true
 					if !GlobalVariables.armored_discovered:
 						GlobalVariables.armored_discovered = true
+				
+				material.albedo_color = Color8(255, 255, 255)
+				await get_tree().create_timer(0.1).timeout
+				material.albedo_color = current_color
 			else:
 				health = 0
 				queue_free()
@@ -40,6 +48,10 @@ func enemy_hit(damage, is_metal):
 				sees_player = true
 				if !GlobalVariables.armored_discovered:
 					GlobalVariables.armored_discovered = true
+					
+			material.albedo_color = Color8(255, 255, 255)
+			await get_tree().create_timer(0.1).timeout
+			material.albedo_color = current_color
 		else:
 			health = 0
 			queue_free()
@@ -54,6 +66,10 @@ func enemy_hit(damage, is_metal):
 				sees_player = true
 				if !GlobalVariables.armored_discovered:
 					GlobalVariables.armored_discovered = true
+					
+			material.albedo_color = Color8(255, 255, 255)
+			await get_tree().create_timer(0.1).timeout
+			material.albedo_color = current_color
 		else:
 			health = 0
 			queue_free()

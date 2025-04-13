@@ -17,6 +17,10 @@ func _ready():
 	attack_speed = attack_speed_original
 	
 	player = get_node(player_path)
+	
+	material = body.get_surface_override_material(0)
+	original_color = material.albedo_color
+	current_color = material.albedo_color
 
 
 func enemy_hit(damage, is_metal):
@@ -27,6 +31,10 @@ func enemy_hit(damage, is_metal):
 			sees_player = true
 			if !GlobalVariables.speedster_discovered:
 				GlobalVariables.speedster_discovered = true
+				
+		material.albedo_color = Color8(255, 255, 255)
+		await get_tree().create_timer(0.1).timeout
+		material.albedo_color = current_color
 	else:
 		health = 0
 		queue_free()

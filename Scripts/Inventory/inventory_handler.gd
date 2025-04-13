@@ -16,6 +16,9 @@ var player_rotation
 var fist_pickedup = false
 var snail_pickedup = false
 
+var fist_counter = 0
+var snail_counter = 0
+
 const FIST_BONUS_DAMAGE = 10
 var bonus_damage = 0
 const SNAIL_SLOW_VALUE = 2
@@ -104,18 +107,30 @@ func pickup_consumable(item : ItemData):
 		"The Fist":
 			fist_pickedup = true
 			bonus_damage += FIST_BONUS_DAMAGE
-			print("Next thrown card deals bonus damage!")
+			$ConsPickUp.text = "The Fist: Next thrown card deals bonus damage!"
 			if !GlobalVariables.the_fist_discovered:
 				GlobalVariables.the_fist_discovered = true
+			fist_counter += 1
+			if !$"VBoxContainer/The Fist".visible:
+				$"VBoxContainer/The Fist".visible = true
+			$"VBoxContainer/The Fist/Label".text = "x%d" % fist_counter
+			await get_tree().create_timer(3).timeout
+			$ConsPickUp.text = ""
 		
 		"The Snail":
 			snail_pickedup = true
 			slow_value += SNAIL_SLOW_VALUE
 			slow_damage += SNAIL_ATTACK_DAMAGE
 			slow_att_speed += SNAIL_ATTACK_SPEED
-			print("Next thrown card slows down the enemy!")
+			$ConsPickUp.text = "The Snail: Next thrown card slows down the enemy!"
 			if !GlobalVariables.the_snail_discovered:
 				GlobalVariables.the_snail_discovered = true
+			snail_counter += 1
+			if !$"VBoxContainer/The Snail".visible:
+				$"VBoxContainer/The Snail".visible = true
+			$"VBoxContainer/The Snail/Label".text = "x%d" % snail_counter
+			await get_tree().create_timer(3).timeout
+			$ConsPickUp.text = ""
 		
 		"The Printer":
 			if !GlobalVariables.the_printer_discovered:
@@ -128,16 +143,18 @@ func pickup_consumable(item : ItemData):
 							slot2.fill_slot(slot.slot_data)
 							helper += 1
 							if helper == 2:
-								print("Created two copies of the card currently in your hand!")
+								$ConsPickUp.text = "The Printer: Created two copies of the card currently in your hand!"
 								break
 					if helper == 1:
-						print("Created only one copy of the card currently in your hand!")
+						$ConsPickUp.text = "The Printer: Created only one copy of the card currently in your hand!"
 					elif helper == 0:
-						print("No free space to create copies of the card currently in your hand!")
+						$ConsPickUp.text = "The Printer: No free space to create copies of the card currently in your hand!"
 					break
 				elif slot.is_in_focus && !slot.is_filled:
-					print("No card in hand, no copies were created!")
+					$ConsPickUp.text = "The Printer: No card in hand, no copies were created!"
 					break
+			await get_tree().create_timer(3).timeout
+			$ConsPickUp.text = ""
 
 
 func _process(_delta: float) -> void:
@@ -151,7 +168,9 @@ func _process(_delta: float) -> void:
 			get_tree().call_group("Player", "change_speed", 10.0)
 		else:
 			get_tree().call_group("Player", "change_speed", player_body.ORIGINAL_SPEED)
+		$CurrentCard.text = current_slot.slot_data.item_name
 	else:
+		$CurrentCard.text = ""
 		get_tree().call_group("Player", "change_speed", player_body.ORIGINAL_SPEED)
 	
 	if Input.is_action_just_released("slot_up"):
@@ -191,6 +210,8 @@ func _process(_delta: float) -> void:
 					instance.damage += bonus_damage
 					bonus_damage = 0
 					fist_pickedup = false
+					fist_counter = 0
+					$"VBoxContainer/The Fist".visible = false
 				if snail_pickedup:
 					instance.slow_value += slow_value
 					instance.slow_damage += slow_damage
@@ -199,6 +220,8 @@ func _process(_delta: float) -> void:
 					slow_damage = 0
 					slow_att_speed = 0
 					snail_pickedup = false
+					snail_counter = 0
+					$"VBoxContainer/The Snail".visible = false
 				remove_from_slot(i)
 				print("card thrown")
 

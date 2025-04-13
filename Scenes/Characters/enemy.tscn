@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bueucldgu2a2o"]
 
-[ext_resource type="Material" uid="uid://c81rgqqbxnafj" path="res://Materials/level_1_obs.tres" id="1_f3nww"]
 [ext_resource type="Script" path="res://Scripts/Characters/enemy.gd" id="1_m6wnb"]
+[ext_resource type="Material" uid="uid://dtqu8qs6ce54p" path="res://Materials/enemy.tres" id="2_6xh8k"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xith1"]
 
@@ -24,7 +24,7 @@ script = ExtResource("1_m6wnb")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_xith1")
-surface_material_override/0 = ExtResource("1_f3nww")
+surface_material_override/0 = ExtResource("2_6xh8k")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, -0.2, 0.615, 0.48)
