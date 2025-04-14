@@ -4,8 +4,8 @@ class_name Level5
 
 const LEVEL_NAME = "Level 5"
 
-const MAX_CARDS = 1 
-const MAX_CONS = 0 
+const MAX_CARDS = 145 
+const MAX_CONS = 28
 
 var cards_spawned = 0
 var cons_spawned = 0
