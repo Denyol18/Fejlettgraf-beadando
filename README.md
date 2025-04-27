@@ -2,6 +2,8 @@
 
 Játék: Card Sharp
 
+A játék elérhető futtatható (.exe) program formában itt: https://drive.google.com/file/d/1ETIzCEJvDP4vAgOckoRGAV3lzDMKQeNp/view?usp=sharing
+
 Leírás:
 
 Card Sharp is a 3D first person shooter in which you must complete 5 different levels to successfully beat the game.
